@@ -3,10 +3,9 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import CompanyIntro from './components/CompanyIntro';
 import VideoSection from './components/VideoSection';
-import FeaturedProjects from './components/FeaturedProjects';
-import AwardsSection from './components/AwardsSection';
+import RollingGallery from './components/FeaturedProjects';
 import BlogSection from './components/BlogSection';
-import PortfolioGallery from './components/PortfolioGallery';
+import DesignExpertise from './components/DesignExpertise';
 import AboutUs from './components/AboutUs';
 import TeamSection from './components/TeamSection';
 import Footer from './components/Footer';
@@ -21,10 +20,9 @@ function App() {
       <HeroSection />
       <CompanyIntro />
       <VideoSection />
-      <FeaturedProjects />
-      <AwardsSection />
+      <RollingGallery autoplay={true} pauseOnHover={true} />
       <BlogSection />
-      <PortfolioGallery />
+      <DesignExpertise />
       <AboutUs />
       <TeamSection />
       <Footer />
