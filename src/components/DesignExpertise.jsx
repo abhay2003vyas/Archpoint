@@ -9,13 +9,13 @@ const DesignExpertise = () => {
           <h1 className="text-6xl font-light text-gray-800 mb-6">Design Expertise</h1>
           <div className="w-full h-px bg-gray-400 mb-8"></div>
           
-          <div className="max-w-md">
+         
             <p className="text-gray-700 leading-relaxed">
-              Pushing beyond traditional design boundaries, <span className="font-semibold">Arch Point</span><br />
-              crafts visionary cities, buildings, landscapes and interiors<br />
+              Pushing beyond traditional design boundaries, <span className="font-semibold">Arch Point </span>
+              crafts visionary cities, buildings, landscapes and interiors
               centred around people and their wellbeing
             </p>
-          </div>
+     
         </div>
 
         {/* Main Content */}
