@@ -1,36 +1,37 @@
-import React from 'react';
+import React from "react";
 
 const StatsSection = () => {
   const stats = [
     {
-      img: 'http://www.archpoint.in/wp-content/uploads/2022/02/project.png',
-      title: '300+ Projects',
-      desc: 'Thanks to all visionaries for believing in Arch Point',
+      img: "http://www.archpoint.in/wp-content/uploads/2022/02/project.png",
+      title: "300+ Projects",
+      desc: "Thanks to all visionaries for believing in Arch Point",
     },
     {
-      img: 'http://www.archpoint.in/wp-content/uploads/2022/02/city-map.png',
-      title: '10+ Cities',
-      desc: 'We believe in growing together.',
+      img: "http://www.archpoint.in/wp-content/uploads/2022/02/city-map.png",
+      title: "Nationwide",
+      desc: "We believe in growing together.",
+    },
+
+    {
+      img: "http://www.archpoint.in/wp-content/uploads/2022/02/team.png",
+      title: "100+ Team",
+      desc: "dedicated and integrated team which believes design is our love",
     },
     {
-      img: 'http://www.archpoint.in/wp-content/uploads/2022/02/team.png',
-      title: '50+ Team',
-      desc: 'dedicated and integrated team which believes design is our love',
+      img: "http://www.archpoint.in/wp-content/uploads/2022/02/certificate.png",
+      title: "ISO Certified",
+      desc: "Recognised for our commitment",
     },
     {
-      img: 'http://www.archpoint.in/wp-content/uploads/2022/02/certificate.png',
-      title: 'ISO Certified',
-      desc: 'Recognised for our commitment',
+      img: "http://www.archpoint.in/wp-content/uploads/2022/02/government-building.png",
+      title: "Govt. Recognised",
+      desc: "Recognised as startup by Government of India",
     },
     {
-      img: 'http://www.archpoint.in/wp-content/uploads/2022/02/government-building.png',
-      title: 'Govt. Recognised',
-      desc: 'Recognised as startup by Government of India',
-    },
-    {
-      img: 'http://www.archpoint.in/wp-content/uploads/2022/02/quantum.png',
-      title: 'Specialize in Quantum Architecture',
-      desc: 'your vibes matter to us.',
+      img: "http://www.archpoint.in/wp-content/uploads/2022/02/quantum.png",
+      title: "Specialize in Quantum Architecture",
+      desc: "your vibes matter to us.",
     },
   ];
 
@@ -48,7 +49,9 @@ const StatsSection = () => {
               loading="lazy"
               decoding="async"
             />
-            <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
+            <h3 className="text-xl font-semibold text-gray-800">
+              {item.title}
+            </h3>
             <p className="text-gray-600 mt-2 text-sm max-w-xs">{item.desc}</p>
           </div>
         ))}
