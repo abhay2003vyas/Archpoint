@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
 import CompanyIntro from './components/CompanyIntro';
 import VideoSection from './components/VideoSection';
 import RollingGallery from './components/FeaturedProjects';
@@ -17,7 +16,7 @@ function App() {
   return (
     <div className="font-sans bg-beige text-dark">
       <Navbar />
-      <HeroSection />
+      <VideoSection />
       <CompanyIntro />
       <VideoSection />
       <RollingGallery autoplay={true} pauseOnHover={true} />
