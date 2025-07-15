@@ -8,6 +8,7 @@ import DesignExpertise from './components/DesignExpertise';
 import AboutUs from './components/AboutUs';
 import TeamSection from './components/TeamSection';
 import Footer from './components/Footer';
+import AwardsRecognition from './components/AwardsRecognition';
 import '@fontsource/montserrat';
 import '@fontsource/merriweather';
 import './index.css';
@@ -18,7 +19,7 @@ function App() {
       <Navbar />
       <VideoSection />
       <CompanyIntro />
-      <VideoSection />
+      <AwardsRecognition/>
       <RollingGallery autoplay={true} pauseOnHover={true} />
       <BlogSection />
       <DesignExpertise />
