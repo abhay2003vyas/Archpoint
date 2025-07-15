@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
 import logo from "../assets/logo.jpg";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
@@ -68,7 +69,7 @@ const Navbar = () => {
         }}
       >
         {navbarState === "center" ? (
-          <ul className="flex flex-col md:flex-row items-center gap-6 md:gap-12 text-3xl md:text-5xl font-light">
+          <ul className="flex flex-col md:flex-row items-center gap-8 md:gap-16 text-4xl md:text-6xl lg:text-7xl font-light">
 
             {menu.map((item, idx) => (
               <li
@@ -115,7 +116,7 @@ const Navbar = () => {
         ) : (
           <div className="flex items-center justify-between w-full">
             {/* Top Navbar Menu */}
-            <ul className="hidden lg:flex gap-6 xl:gap-8 items-center text-lg xl:text-xl font-medium mx-auto">
+            <ul className="hidden lg:flex gap-8 xl:gap-12 items-center text-xl xl:text-2xl font-medium mx-auto">
               {menu.map((item, idx) => (
                 <li
                   key={idx}
@@ -162,8 +163,26 @@ const Navbar = () => {
               ))}
             </ul>
 
+            {/* Search Icon for Top Navbar */}
+            <div className="hidden lg:flex items-center">
+              <button
+                className="text-gray-800 hover:text-yellow-600 transition-colors duration-300 p-2 rounded-full hover:bg-gray-100"
+                aria-label="Search"
+              >
+                <FiSearch className="text-2xl" />
+              </button>
+            </div>
+
             {/* Mobile Menu */}
-            <div className="lg:hidden">
+            <div className="lg:hidden flex items-center gap-4">
+              {/* Search Icon for Mobile */}
+              <button
+                className="text-gray-800 hover:text-yellow-600 transition-colors duration-300 p-2"
+                aria-label="Search"
+              >
+                <FiSearch className="text-xl" />
+              </button>
+              
               <button
                 onClick={toggleMobileMenu}
                 className="text-gray-800 text-2xl hover:text-yellow-600 transition-colors duration-300"
