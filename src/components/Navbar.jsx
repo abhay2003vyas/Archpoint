@@ -69,8 +69,7 @@ const Navbar = () => {
         }}
       >
         {navbarState === "center" ? (
-          <ul className="flex flex-col md:flex-row items-center gap-8 md:gap-16 text-5xl md:text-7xl lg:text-8xl font-light">
-
+          <ul className="flex flex-col md:flex-row items-center gap-8 md:gap-16 text-4xl md:text-6xl lg:text-7xl font-light">
 
             {menu.map((item, idx) => (
               <li
