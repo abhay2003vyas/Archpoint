@@ -18,7 +18,6 @@ function App() {
     <div className="font-sans bg-beige text-dark">
       <Navbar />
       <VideoSection />
-      <CompanyIntro />
       <AwardsRecognition/>
       <FeaturedProjects/>
       <ClientLogos />
