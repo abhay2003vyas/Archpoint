@@ -182,12 +182,12 @@ const AwardsRecognition = () => {
               >
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group cursor-pointer transform hover:-translate-y-2">
                   {/* Award Image with Background - Increased height for mobile */}
-                  <div className={`relative h-64 overflow-hidden ${award.bgColor}`}>
+                  <div className={`relative h-80 sm:h-96 overflow-hidden ${award.bgColor}`}>
                     <div className="absolute inset-0 flex items-center justify-center p-4">
                       <img 
                         src={award.image} 
                         alt={award.title}
-                        className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-lg"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 drop-shadow-2xl"
                         loading="lazy"
                       />
                     </div>
@@ -251,12 +251,12 @@ const AwardsRecognition = () => {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Award Image with Background - Significantly increased height */}
-                <div className={`relative h-56 md:h-64 lg:h-72 overflow-hidden ${award.bgColor}`}>
+                <div className={`relative h-80 md:h-96 lg:h-[28rem] overflow-hidden ${award.bgColor}`}>
                   <div className="absolute inset-0 flex items-center justify-center p-6">
                     <img 
                       src={award.image} 
                       alt={award.title}
-                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-lg"
+                      className="w-[95%] h-[95%] object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-lg"
                       loading="lazy"
                     />
                   </div>
