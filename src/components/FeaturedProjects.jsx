@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  motion,
-  useMotionValue,
-  useAnimation,
-  useTransform,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 const PROJECT_STORIES = [
   {
@@ -49,53 +44,39 @@ const PROJECT_STORIES = [
   }
 ];
 
-const ProjectStories = ({
-  autoplay = true,
-  pauseOnHover = true,
-  projects = [],
-}) => {
-  projects = projects.length > 0 ? projects : PROJECT_STORIES;
+const ProjectStories = ({ autoplay = true, projects = [] }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const items = projects.length > 0 ? projects : PROJECT_STORIES;
 
-  const [currentProject, setCurrentProject] = useState(0);
-  const [isScreenSizeSm, setIsScreenSizeSm] = useState(
-    typeof window !== 'undefined' ? window.innerWidth <= 640 : false
-  );
-  
-  useEffect(() => {
-    const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % items.length);
+  };
 
-  const controls = useAnimation();
-  const slideX = useMotionValue(0);
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+  };
 
   useEffect(() => {
     if (autoplay) {
-      const interval = setInterval(() => {
-        setCurrentProject((prev) => (prev + 1) % projects.length);
+      const timer = setInterval(() => {
+        nextSlide();
       }, 5000);
-      return () => clearInterval(interval);
+      return () => clearInterval(timer);
     }
-  }, [autoplay, projects.length]);
+  }, [currentIndex, autoplay]);
 
-  const nextProject = () => {
-    setCurrentProject((prev) => (prev + 1) % projects.length);
-  };
-
-  const prevProject = () => {
-    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
-  };
-
-  const goToProject = (index) => {
-    setCurrentProject(index);
+  const getPosition = (index) => {
+    if (index === currentIndex) return "center";
+    if (index === (currentIndex - 1 + items.length) % items.length) return "left";
+    if (index === (currentIndex + 1) % items.length) return "right";
+    return "hidden";
   };
 
   return (
-    <div className="w-full bg-gray-50 py-16">
-      {/* Header */}
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="flex justify-between items-center">
+    <div className="w-full bg-gray-50 py-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-12">
           <h2 className="text-5xl md:text-6xl font-light text-gray-900 tracking-tight">
             Project Stories
           </h2>
@@ -103,92 +84,104 @@ const ProjectStories = ({
             SEE ALL PROJECTS →
           </button>
         </div>
-      </div>
 
+        {/* Carousel */}
+        <div className="relative h-[520px]">
+          <div className="flex justify-center items-center space-x-0 relative h-full">
+            {items.map((project, index) => {
+              const position = getPosition(index);
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative">
-          {/* Main Image Container */}
-          <div className="relative h-[500px] md:h-[600px] overflow-hidden rounded-lg bg-white shadow-2xl">
-            <motion.div
-              key={currentProject}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="absolute inset-0"
-            >
-              <img
-                src={projects[currentProject].image}
-                alt={projects[currentProject].title}
-                className="w-full h-full object-cover"
-              />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            </motion.div>
+              let scale = 1;
+              let offset = "0%";
+              let zIndex = 10;
+              let blur = "blur-none opacity-100";
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevProject}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            <button
-              onClick={nextProject}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+              if (position === "left") {
+                scale = 0.85;
+                offset = "-100%";
+                zIndex = 5;
+                blur = "blur-sm opacity-60";
+              } else if (position === "right") {
+                scale = 0.85;
+                offset = "100%";
+                zIndex = 5;
+                blur = "blur-sm opacity-60";
+              } else if (position === "hidden") {
+                return null;
+              }
 
-            {/* Content Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-              <motion.div
-                key={currentProject}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-white"
-              >
-                <div className="mb-4">
-                  <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                    {projects[currentProject].category}
-                  </span>
-                  <span className="ml-3 text-sm opacity-75">
-                    {projects[currentProject].year}
-                  </span>
-                </div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                  {projects[currentProject].title}
-                </h3>
-                <p className="text-lg md:text-xl opacity-90 max-w-2xl leading-relaxed">
-                  {projects[currentProject].description}
-                </p>
-              </motion.div>
-            </div>
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className={`absolute top-0 left-1/2 transform ${blur} transition-transform duration-700`}
+                  style={{
+                    width: "90%",
+                    height: "100%",
+                    transform: `translateX(calc(-50% + ${offset})) scale(${scale})`,
+                    zIndex
+                  }}
+                >
+                  <div className="relative h-full overflow-hidden rounded-3xl shadow-2xl">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    {position === "center" && (
+                      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
+                        <div className="mb-3">
+                          <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+                            {project.category}
+                          </span>
+                          <span className="ml-3 text-sm opacity-80">{project.year}</span>
+                        </div>
+                        <h3 className="text-3xl md:text-4xl font-bold mb-3">{project.title}</h3>
+                        <p className="text-lg opacity-90 max-w-2xl">{project.description}</p>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* Project Indicators */}
-          <div className="flex justify-center mt-8 space-x-3">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToProject(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentProject
-                    ? 'bg-gray-600 scale-125'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-              />
-            ))}
-          </div>
+          {/* Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-md p-3 rounded-full z-20"
+          >
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
 
-         
+          <button
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-md p-3 rounded-full z-20"
+          >
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Indicators */}
+        <div className="flex justify-center mt-10 space-x-3">
+          {items.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "bg-gray-800 scale-125" : "bg-gray-300 hover:bg-gray-400"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </div>
