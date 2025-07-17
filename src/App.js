@@ -2,11 +2,11 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import CompanyIntro from './components/CompanyIntro';
 import VideoSection from './components/VideoSection';
-import RollingGallery from './components/FeaturedProjects';
+import FeaturedProjects from './components/FeaturedProjects';
 import BlogSection from './components/BlogSection';
 import DesignExpertise from './components/DesignExpertise';
-import AboutUs from './components/AboutUs';
-import TeamSection from './components/TeamSection';
+import ClientLogos from './components/ClientLogos';
+import ClientTestimonials from './components/ClientTestimonials';
 import Footer from './components/Footer';
 import AwardsRecognition from './components/AwardsRecognition';
 import '@fontsource/montserrat';
@@ -20,11 +20,9 @@ function App() {
       <VideoSection />
       <CompanyIntro />
       <AwardsRecognition/>
-      <RollingGallery autoplay={true} pauseOnHover={true} />
-      <BlogSection />
-      <DesignExpertise />
-      <AboutUs />
-      <TeamSection />
+      <FeaturedProjects/>
+      <ClientLogos />
+      <ClientTestimonials />
       <Footer />
     </div>
   );
