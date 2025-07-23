@@ -86,6 +86,26 @@ const ProjectStories = ({ autoplay = true, projects = [] }) => {
   return (
     <div className="w-full bg-white py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+<div className="text-center mb-12">
+  <motion.h2
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    className="text-4xl font-semibold tracking-tight text-gray-800"
+  >
+    Our Architectural Projects
+  </motion.h2>
+  <motion.p
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+    className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto"
+  >
+    Discover our latest architectural masterpieces that blend form, function, and sustainability.
+  </motion.p>
+</div>
+
         {/* Carousel */}
         <div className="relative h-[600px] sm:h-[640px]">
           <div className="flex justify-center items-center space-x-0 relative h-full">
