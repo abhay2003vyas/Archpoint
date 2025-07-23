@@ -47,7 +47,7 @@ const Navbar = () => {
     { label: "Residential Design", path: "/residential-design" },
     {
       label: "Project Management Consultancy",
-      path: "/project-management-consultancy",
+      path: "/pmc",
     },
   ];
   const location = useLocation();
