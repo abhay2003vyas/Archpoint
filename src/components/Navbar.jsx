@@ -3,7 +3,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import logo from "../assets/logo.jpg";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [navbarState, setNavbarState] = useState("center"); // 'center' | 'top'
@@ -41,11 +42,47 @@ const Navbar = () => {
   const menu = ["Home", "About", "Projects", "Blog"];
 
   const projectsSubMenu = [
-    "Architectural Design",
-    "Interior Design",
-    "Residential Design",
-    "Project Management Consultancy",
+    { label: "Architectural Design", path: "/projects" },
+    { label: "Interior Design", path: "/interior-design" },
+    { label: "Residential Design", path: "/residential-design" },
+    {
+      label: "Project Management Consultancy",
+      path: "/project-management-consultancy",
+    },
   ];
+  const location = useLocation();
+
+  useEffect(() => {
+    const isHomePage =
+      location.pathname === "/" || location.pathname === "/home";
+
+    if (!isHomePage) {
+      setNavbarState("top");
+      return;
+    }
+
+    const handleScroll = () => {
+      const videoSection = document.getElementById("video-section");
+      if (videoSection) {
+        const { bottom } = videoSection.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        const halfScrolled = bottom < window.innerHeight / 2;
+
+        if (scrollY === 0 || !halfScrolled) {
+          setNavbarState("center");
+        } else {
+          if (navbarState !== "top") {
+            setIsAnimating(true);
+            setNavbarState("top");
+            setTimeout(() => setIsAnimating(false), 600);
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname, navbarState]);
 
   return (
     <>
@@ -70,7 +107,6 @@ const Navbar = () => {
       >
         {navbarState === "center" ? (
           <ul className="flex flex-col md:flex-row items-center gap-8 md:gap-16 text-4xl md:text-6xl lg:text-7xl font-light">
-
             {menu.map((item, idx) => (
               <li
                 key={idx}
@@ -92,19 +128,17 @@ const Navbar = () => {
                     <div className="w-64 bg-white shadow-2xl rounded-lg border border-gray-200 overflow-hidden transform scale-95 group-hover:scale-100 transition-all duration-500 ease-out">
                       <div className="py-2">
                         {projectsSubMenu.map((subItem, subIdx) => (
-                          <a
+                          <Link
                             key={subIdx}
-                            href={`#${subItem
-                              .toLowerCase()
-                              .replace(/\s+/g, "-")}`}
+                            to={subItem.path}
                             className="block px-6 py-3 text-lg font-light text-gray-800 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-400 hover:text-white capitalize transition-all duration-300 ease-out transform hover:translate-x-2"
                             style={{
                               animationDelay: `${subIdx * 50}ms`,
                               animation: "fadeInUp 0.3s ease-out forwards",
                             }}
                           >
-                            {subItem}
-                          </a>
+                            {subItem.label}
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -141,19 +175,17 @@ const Navbar = () => {
                       <div className="w-64 bg-white shadow-2xl rounded-lg border border-gray-200 overflow-hidden transform scale-95 group-hover:scale-100 transition-all duration-500 ease-out">
                         <div className="py-2">
                           {projectsSubMenu.map((subItem, subIdx) => (
-                            <a
+                            <Link
                               key={subIdx}
-                              href={`#${subItem
-                                .toLowerCase()
-                                .replace(/\s+/g, "-")}`}
+                              to={subItem.path}
                               className="block px-4 py-3 text-gray-800 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-400 hover:text-white capitalize transition-all duration-300 ease-out transform hover:translate-x-2"
                               style={{
                                 animationDelay: `${subIdx * 50}ms`,
                                 animation: "fadeInUp 0.3s ease-out forwards",
                               }}
                             >
-                              {subItem}
-                            </a>
+                              {subItem.label}
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -182,7 +214,7 @@ const Navbar = () => {
               >
                 <FiSearch className="text-xl" />
               </button>
-              
+
               <button
                 onClick={toggleMobileMenu}
                 className="text-gray-800 text-2xl hover:text-yellow-600 transition-colors duration-300"
@@ -221,11 +253,9 @@ const Navbar = () => {
                           {projectsOpen && (
                             <div className="pl-4 mt-2 flex flex-col gap-2">
                               {projectsSubMenu.map((subItem, subIdx) => (
-                                <a
+                                <Link
                                   key={subIdx}
-                                  href={`#${subItem
-                                    .toLowerCase()
-                                    .replace(/\s+/g, "-")}`}
+                                  to={subItem.path}
                                   onClick={() => setMobileMenuOpen(false)}
                                   className="text-gray-600 hover:text-yellow-500 text-sm capitalize transition-all duration-300 flex items-center gap-2"
                                   style={{
@@ -233,8 +263,8 @@ const Navbar = () => {
                                     animation: `fadeInUp 0.3s ease-out forwards`,
                                   }}
                                 >
-                                  {subItem}
-                                </a>
+                                  {subItem.label}
+                                </Link>
                               ))}
                             </div>
                           )}
