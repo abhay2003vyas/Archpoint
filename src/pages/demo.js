@@ -1,3 +1,6 @@
+
+
+// DEMO CODE
 import React, { useState, useEffect } from "react";
 import p1 from "../assets/p1.jpg";
 
