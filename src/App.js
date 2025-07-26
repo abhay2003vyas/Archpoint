@@ -11,8 +11,7 @@ import ClientTestimonials from './components/ClientTestimonials';
 import Footer from './components/Footer';
 import AwardsRecognition from './components/AwardsRecognition';
 import Projects from './pages/Architectural_Design'; // <-- new route page
-import PMC from './pages/PMCPage';
-
+import About from './pages/About';
 import '@fontsource/montserrat';
 import '@fontsource/merriweather';
 import './index.css';
@@ -35,7 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/pmc" element={<PMC />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );
