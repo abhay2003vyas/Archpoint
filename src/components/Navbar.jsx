@@ -117,10 +117,14 @@ const Navbar = () => {
                   animation: `fadeInDown 0.8s ease-out forwards ${idx * 100}ms`,
                 }}
               >
-                <a href={`#${item.toLowerCase()}`} className="relative group">
+                <Link
+                  to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  className="relative group"
+                >
                   {item}
+
                   <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </a>
+                </Link>
 
                 {/* Center Navbar Dropdown */}
                 {item === "Projects" && (
@@ -163,12 +167,12 @@ const Navbar = () => {
                     }ms`,
                   }}
                 >
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    className="relative capitalize"
+                  <Link
+                    to={`/${item.toLowerCase()}`}
+                    className="relative group"
                   >
                     {item}
-                  </a>
+                  </Link>
 
                   {item === "Projects" && (
                     <div className="absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-out">
@@ -271,7 +275,7 @@ const Navbar = () => {
                         </div>
                       ) : (
                         <a
-                          href={`#${item.toLowerCase()}`}
+                          href={`/${item.toLowerCase()}`}
                           onClick={() => setMobileMenuOpen(false)}
                           className="text-gray-800 hover:text-yellow-600 transition-colors duration-300 py-2 capitalize"
                         >
