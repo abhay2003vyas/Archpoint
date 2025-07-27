@@ -10,7 +10,9 @@ import ClientLogos from './components/ClientLogos';
 import ClientTestimonials from './components/ClientTestimonials';
 import Footer from './components/Footer';
 import AwardsRecognition from './components/AwardsRecognition';
-import Projects from './pages/Architectural_Design'; // <-- new route page
+import ArchitecturalDesign from './pages/ArchitecturalDesign';
+import InteriorDesign from './pages/InteriorDesign';
+import ProjectManagementConsultancy from './pages/ProjectManagementConsultancy';
 import About from './pages/About';
 import '@fontsource/montserrat';
 import '@fontsource/merriweather';
@@ -33,8 +35,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/architectural-design" element={<ArchitecturalDesign />} />
         <Route path="/about" element={<About />} />
+        <Route path='/interior-design' element={<InteriorDesign />} />
+        <Route path="/project-management-consultancy" element={<ProjectManagementConsultancy />} />
       </Routes>
     </div>
   );
