@@ -42,12 +42,12 @@ const Navbar = () => {
   const menu = ["Home", "About", "Projects", "Blog"];
 
   const projectsSubMenu = [
-    { label: "Architectural Design", path: "/projects" },
+    { label: "Architectural Design", path: "/architectural-design" },
     { label: "Interior Design", path: "/interior-design" },
     { label: "Residential Design", path: "/residential-design" },
     {
       label: "Project Management Consultancy",
-      path: "/pmc",
+      path: "/project-management-consultancy",
     },
   ];
   const location = useLocation();
