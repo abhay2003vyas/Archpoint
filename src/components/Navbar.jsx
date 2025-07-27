@@ -53,8 +53,7 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const isHomePage =
-      location.pathname === "/" || location.pathname === "/home";
+    const isHomePage = location.pathname === "/";
 
     if (!isHomePage) {
       setNavbarState("top");
@@ -168,7 +167,7 @@ const Navbar = () => {
                   }}
                 >
                   <Link
-                    to={`/${item.toLowerCase()}`}
+                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                     className="relative group"
                   >
                     {item}
@@ -274,13 +273,13 @@ const Navbar = () => {
                           )}
                         </div>
                       ) : (
-                        <a
-                          href={`/${item.toLowerCase()}`}
+                        <Link
+                          to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                           onClick={() => setMobileMenuOpen(false)}
                           className="text-gray-800 hover:text-yellow-600 transition-colors duration-300 py-2 capitalize"
                         >
                           {item}
-                        </a>
+                        </Link>
                       )}
                     </div>
                   ))}
