@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import AwardsRecognition from './components/AwardsRecognition';
 import ArchitecturalDesign from './pages/ArchitecturalDesign';
 import InteriorDesign from './pages/InteriorDesign';
+import ResidentialDesign from './pages/ResidentialDesign';
 import ProjectManagementConsultancy from './pages/ProjectManagementConsultancy';
 import About from './pages/About';
 import '@fontsource/montserrat';
@@ -38,6 +39,7 @@ function App() {
         <Route path="/architectural-design" element={<ArchitecturalDesign />} />
         <Route path="/about" element={<About />} />
         <Route path='/interior-design' element={<InteriorDesign />} />
+        <Route path='/residential-design' element={<ResidentialDesign />} />
         <Route path="/project-management-consultancy" element={<ProjectManagementConsultancy />} />
       </Routes>
     </div>
