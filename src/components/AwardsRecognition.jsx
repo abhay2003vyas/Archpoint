@@ -182,7 +182,8 @@ const AwardsRecognition = () => {
               >
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group cursor-pointer transform hover:-translate-y-2">
                   {/* Award Image with Background - Increased height for mobile */}
-                  <div className={`relative h-80 sm:h-96 overflow-hidden ${award.bgColor}`}>
+                  <div className={`relative h-64 sm:h-72 overflow-hidden ${award.bgColor}`}>
+
                     <div className="absolute inset-0 flex items-center justify-center p-4">
                       <img 
                         src={award.image} 
@@ -221,9 +222,7 @@ const AwardsRecognition = () => {
                       {award.title}
                     </h3>
                     
-                    <p className="text-sm leading-relaxed text-gray-600 group-hover:text-gray-800 transition-all duration-300 line-clamp-3">
-                      {award.description}
-                    </p>
+                    
                   </div>
                 </div>
               </div>
@@ -241,7 +240,7 @@ const AwardsRecognition = () => {
             {awards.map((award, index) => (
               <div 
                 key={award.id} 
-                className={`flex-shrink-0 w-80 md:w-96 lg:w-[420px] bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group cursor-pointer transform hover:-translate-y-3 hover:scale-105 ${
+                className={`flex-shrink-0 w-80 md:w-96 lg:w-[340px] bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group cursor-pointer transform hover:-translate-y-3 hover:scale-105 ${
                   isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-20'
                 }`}
                 style={{ 
@@ -251,7 +250,8 @@ const AwardsRecognition = () => {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Award Image with Background - Significantly increased height */}
-                <div className={`relative h-80 md:h-96 lg:h-[28rem] overflow-hidden ${award.bgColor}`}>
+                <div className={`relative h-56 md:h-72 lg:h-[20rem] overflow-hidden ${award.bgColor}`}>
+
                   <div className="absolute inset-0 flex items-center justify-center p-6">
                     <img 
                       src={award.image} 
@@ -300,11 +300,7 @@ const AwardsRecognition = () => {
                     {award.title}
                   </h3>
                   
-                  <p className={`text-sm md:text-base leading-relaxed line-clamp-3 transition-all duration-300 ${
-                    hoveredCard === award.id ? 'text-gray-800' : 'text-gray-600'
-                  }`}>
-                    {award.description}
-                  </p>
+                 
                 </div>
               </div>
             ))}
