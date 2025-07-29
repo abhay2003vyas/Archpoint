@@ -1,92 +1,112 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Phone, Mail, User, Building, Users, Globe, Star, ArrowRight } from 'lucide-react';
-
+import React, { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Phone,
+  Mail,
+  User,
+  Building,
+  Users,
+  Globe,
+  Star,
+  ArrowRight,
+} from "lucide-react";
 const ArchitecturalDesign = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentProject, setCurrentProject] = useState(0);
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [formData, setFormData] = useState({ name: '', contact: '', email: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    contact: "",
+    email: "",
+  });
   const [formErrors, setFormErrors] = useState({});
 
   // Hero carousel images
   const heroImages = [
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=800&fit=crop',
-    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=800&fit=crop',
-    'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1920&h=800&fit=crop'
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=800&fit=crop",
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&h=800&fit=crop",
+    "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1920&h=800&fit=crop",
   ];
 
   // Project data with images
   const projects = [
     {
-      name: 'Hotel Kapish',
-      mainImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop',
+      name: "Hotel Kapish",
+      mainImage: "/images/ArchitecturalDesign/kapish/View.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=200&h=150&fit=crop'
-      ]
+        "/images/ArchitecturalDesign/kapish/1.jpg",
+        "/images/ArchitecturalDesign/kapish/2.jpg",
+        "/images/ArchitecturalDesign/kapish/3.jpg",
+        "/images/ArchitecturalDesign/kapish/4.jpg",
+        "/images/ArchitecturalDesign/kapish/5.jpg",
+        "/images/ArchitecturalDesign/kapish/6.jpg",
+        "/images/ArchitecturalDesign/kapish/7.jpg",
+        "/images/ArchitecturalDesign/kapish/8.jpg",
+        "/images/ArchitecturalDesign/kapish/9.jpg",
+      ],
     },
     {
-      name: 'Grass Field Resort',
-      mainImage: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=600&fit=crop',
+      name: "Navjeevan Science College",
+      mainImage:
+        "/images/ArchitecturalDesign/Navjeevan/1.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1574691250077-03a929faece5?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=200&h=150&fit=crop'
-      ]
+        "/images/ArchitecturalDesign/Navjeevan/1.jpg",
+        "/images/ArchitecturalDesign/Navjeevan/2.jpg"
+      ],
     },
     {
-      name: 'Seven Heaven Residence',
-      mainImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop',
+      name: "CLC Institute",
+      mainImage: "/images/ArchitecturalDesign/CLC/2.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=150&fit=crop'
-      ]
+        "/images/ArchitecturalDesign/CLC/1.jpg",
+        "/images/ArchitecturalDesign/CLC/2.jpg",
+        "/images/ArchitecturalDesign/CLC/3.jpg",
+        "/images/ArchitecturalDesign/CLC/4.jpg",
+      ],
     },
     {
-      name: 'Beawar Residency',
-      mainImage: 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop',
+      name: "Medical College Auditorium",
+      mainImage:
+        "/images/ArchitecturalDesign/Medical_clg/2.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=200&h=150&fit=crop'
-      ]
-    }
+        "/images/ArchitecturalDesign/Medical_clg/1.jpg",
+        "/images/ArchitecturalDesign/Medical_clg/2.jpg"
+      ],
+    },
   ];
 
   // Milestones
   const milestones = [
-    { icon: Building, number: '300+', label: 'Projects' },
-    { icon: User, number: '20 Yr', label: 'Experience' },
-    { icon: Users, number: '100+', label: 'Team' },
-    { icon: Globe, number: 'Global', label: 'Services' }
+    { icon: Building, number: "300+", label: "Projects" },
+    { icon: User, number: "20 Yr", label: "Experience" },
+    { icon: Users, number: "100+", label: "Team" },
+    { icon: Globe, number: "Global", label: "Services" },
   ];
 
   // Testimonials
   const testimonials = [
     {
-      name: 'Rajesh Kumar',
-      role: 'Hotel Owner',
-      quote: 'Arch Point transformed our vision into reality. Their quantum architecture approach created a space that perfectly balances functionality and aesthetics.',
-      rating: 5
+      name: "Rajesh Kumar",
+      role: "Hotel Owner",
+      quote:
+        "Arch Point transformed our vision into reality. Their quantum architecture approach created a space that perfectly balances functionality and aesthetics.",
+      rating: 5,
     },
     {
-      name: 'Priya Sharma',
-      role: 'Resort Manager',
-      quote: 'The team delivered exceptional design solutions that exceeded our expectations. Every detail was carefully crafted.',
-      rating: 5
+      name: "Priya Sharma",
+      role: "Resort Manager",
+      quote:
+        "The team delivered exceptional design solutions that exceeded our expectations. Every detail was carefully crafted.",
+      rating: 5,
     },
     {
-      name: 'Vikram Singh',
-      role: 'Property Developer',
-      quote: 'Working with Arch Point was a seamless experience. Their expertise in architectural design is unmatched.',
-      rating: 5
-    }
+      name: "Vikram Singh",
+      role: "Property Developer",
+      quote:
+        "Working with Arch Point was a seamless experience. Their expertise in architectural design is unmatched.",
+      rating: 5,
+    },
   ];
 
   // Auto-slide hero carousel
@@ -100,10 +120,11 @@ const ArchitecturalDesign = () => {
   // Form validation
   const validateForm = () => {
     const errors = {};
-    if (!formData.name.trim()) errors.name = 'Name is required';
-    if (!formData.contact.trim()) errors.contact = 'Contact number is required';
-    if (!formData.email.trim()) errors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = 'Email is invalid';
+    if (!formData.name.trim()) errors.name = "Name is required";
+    if (!formData.contact.trim()) errors.contact = "Contact number is required";
+    if (!formData.email.trim()) errors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      errors.email = "Email is invalid";
     return errors;
   };
 
@@ -112,16 +133,22 @@ const ArchitecturalDesign = () => {
     const errors = validateForm();
     setFormErrors(errors);
     if (Object.keys(errors).length === 0) {
-      alert('Form submitted successfully!');
-      setFormData({ name: '', contact: '', email: '' });
+      alert("Form submitted successfully!");
+      setFormData({ name: "", contact: "", email: "" });
     }
   };
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+  const prevSlide = () =>
+    setCurrentSlide(
+      (prev) => (prev - 1 + heroImages.length) % heroImages.length
+    );
 
-  const nextProject = () => setCurrentProject((prev) => (prev + 1) % projects.length);
-  const prevProject = () => setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
+  const nextProject = () =>
+    setCurrentProject((prev) => (prev + 1) % projects.length);
+  const prevProject = () =>
+    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -132,7 +159,7 @@ const ArchitecturalDesign = () => {
             <div
               key={index}
               className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${
-                index === currentSlide ? 'translate-x-0' : 'translate-x-full'
+                index === currentSlide ? "translate-x-0" : "translate-x-full"
               }`}
             >
               <img
@@ -144,11 +171,12 @@ const ArchitecturalDesign = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Hero Content */}
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-5xl md:text-7xl font-bold text-white text-center tracking-wide">
-            <span className="text-yellow-400">Architectural</span><br />
+            <span className="text-yellow-400">Architectural</span>
+            <br />
             Design
           </h1>
         </div>
@@ -174,7 +202,9 @@ const ArchitecturalDesign = () => {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                index === currentSlide ? 'bg-yellow-400' : 'bg-white bg-opacity-50'
+                index === currentSlide
+                  ? "bg-yellow-400"
+                  : "bg-white bg-opacity-50"
               }`}
             />
           ))}
@@ -191,76 +221,103 @@ const ArchitecturalDesign = () => {
                 Architectural <span className="text-yellow-500">Services</span>
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We provide complete architectural services to make your project remarkable.
+                We provide complete architectural services to make your project
+                remarkable.
               </p>
-              
+
               {showFullDescription && (
                 <div className="text-gray-600 leading-relaxed mb-6">
                   <p className="mb-4">
-                    At Arch Point, a leading architectural firm, we specialize in creating thoughtfully designed spaces that harmonize aesthetics and functionality. Our design philosophy blends artistic expression with architectural precision—balancing light, material, and form to craft timeless environments that elevate everyday living and reflect the unique vision of each client.
+                    At Arch Point, a leading architectural firm, we specialize
+                    in creating thoughtfully designed spaces that harmonize
+                    aesthetics and functionality. Our design philosophy blends
+                    artistic expression with architectural precision—balancing
+                    light, material, and form to craft timeless environments
+                    that elevate everyday living and reflect the unique vision
+                    of each client.
                   </p>
                 </div>
               )}
-              
+
               <button
                 onClick={() => setShowFullDescription(!showFullDescription)}
                 className="inline-flex items-center px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300 font-semibold"
               >
-                {showFullDescription ? 'Read Less' : 'Read More'}
+                {showFullDescription ? "Read Less" : "Read More"}
                 <ArrowRight className="ml-2" size={20} />
               </button>
             </div>
 
             {/* Right Column - Contact Form */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-gray-800">Contact Us</h3>
+              <h3 className="text-2xl font-bold mb-6 text-gray-800">
+                Contact Us
+              </h3>
               <div className="space-y-6">
                 <div>
                   <input
                     type="text"
                     placeholder="Your Name"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.name ? 'border-red-500' : 'border-gray-300'
+                      formErrors.name ? "border-red-500" : "border-gray-300"
                     }`}
                   />
-                  {formErrors.name && <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>}
+                  {formErrors.name && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.name}
+                    </p>
+                  )}
                 </div>
-                
+
                 <div>
                   <input
                     type="tel"
                     placeholder="Contact Number"
                     value={formData.contact}
-                    onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, contact: e.target.value })
+                    }
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.contact ? 'border-red-500' : 'border-gray-300'
+                      formErrors.contact ? "border-red-500" : "border-gray-300"
                     }`}
                   />
-                  {formErrors.contact && <p className="text-red-500 text-sm mt-1">{formErrors.contact}</p>}
+                  {formErrors.contact && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.contact}
+                    </p>
+                  )}
                 </div>
-                
+
                 <div>
                   <input
                     type="email"
                     placeholder="Email Address"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.email ? 'border-red-500' : 'border-gray-300'
+                      formErrors.email ? "border-red-500" : "border-gray-300"
                     }`}
                   />
-                  {formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
+                  {formErrors.email && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.email}
+                    </p>
+                  )}
                 </div>
-                
+
                 <button
                   type="submit"
                   className="w-full py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300 font-semibold"
                 >
                   Submit
                 </button>
-                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -275,11 +332,14 @@ const ArchitecturalDesign = () => {
               <h2 className="text-4xl font-bold mb-6 text-gray-800">
                 Our <span className="text-yellow-500">USP</span>
               </h2>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-700">Quantum Architecture</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+                Quantum Architecture
+              </h3>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Quantum Architecture focuses on the relationship of visual energy with built form. 
-                We believe architecture is not just about creating spaces, but about crafting experiences 
-                that resonate with human emotions and environmental harmony.
+                Quantum Architecture focuses on the relationship of visual
+                energy with built form. We believe architecture is not just
+                about creating spaces, but about crafting experiences that
+                resonate with human emotions and environmental harmony.
               </p>
             </div>
 
@@ -310,8 +370,12 @@ const ArchitecturalDesign = () => {
                   <div className="bg-white bg-opacity-20 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                     <IconComponent size={32} className="text-white" />
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-2">{milestone.number}</h3>
-                  <p className="text-yellow-200 font-semibold">{milestone.label}</p>
+                  <h3 className="text-3xl font-bold text-white mb-2">
+                    {milestone.number}
+                  </h3>
+                  <p className="text-yellow-200 font-semibold">
+                    {milestone.label}
+                  </p>
                 </div>
               );
             })}
@@ -325,7 +389,7 @@ const ArchitecturalDesign = () => {
           <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
             Featured <span className="text-yellow-500">Projects</span>
           </h2>
-          
+
           {/* Main Project Image */}
           <div className="relative mb-8">
             <img
@@ -335,9 +399,11 @@ const ArchitecturalDesign = () => {
             />
             <div className="absolute inset-0 bg-black bg-opacity-30 rounded-2xl"></div>
             <div className="absolute bottom-6 left-6">
-              <h3 className="text-3xl font-bold text-white">{projects[currentProject].name}</h3>
+              <h3 className="text-3xl font-bold text-white">
+                {projects[currentProject].name}
+              </h3>
             </div>
-            
+
             {/* Project Navigation */}
             <button
               onClick={prevProject}
@@ -378,16 +444,24 @@ const ArchitecturalDesign = () => {
               <div key={index} className="bg-white rounded-2xl p-8 shadow-xl">
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={20} className="text-yellow-500 fill-current" />
+                    <Star
+                      key={i}
+                      size={20}
+                      className="text-yellow-500 fill-current"
+                    />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 italic">"{testimonial.quote}"</p>
+                <p className="text-gray-600 mb-6 italic">
+                  "{testimonial.quote}"
+                </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
+                    <h4 className="font-semibold text-gray-800">
+                      {testimonial.name}
+                    </h4>
                     <p className="text-gray-500 text-sm">{testimonial.role}</p>
                   </div>
                 </div>
@@ -404,14 +478,17 @@ const ArchitecturalDesign = () => {
             <span className="text-yellow-500">Arch</span> Point
           </h3>
           <p className="text-gray-400 mb-8">
-            Creating architectural excellence through innovative design and quantum architecture principles.
+            Creating architectural excellence through innovative design and
+            quantum architecture principles.
           </p>
           <div className="flex justify-center space-x-6">
             <Phone className="text-yellow-500" size={24} />
             <Mail className="text-yellow-500" size={24} />
             <Globe className="text-yellow-500" size={24} />
           </div>
-          <p className="text-gray-500 mt-8">&copy; 2025 Arch Point. All rights reserved.</p>
+          <p className="text-gray-500 mt-8">
+            &copy; 2025 Arch Point. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
