@@ -47,12 +47,14 @@ const ArchitecturalDesign = () => {
       ],
     },
     {
-      name: "Navjeevan Science College",
-      mainImage:
-        "/images/ArchitecturalDesign/Navjeevan/1.jpg",
+      name: "Dhai Dweep Temple",
+      mainImage: "/images/ArchitecturalDesign/DhaiDeep/5.jpg",
       thumbnails: [
-        "/images/ArchitecturalDesign/Navjeevan/1.jpg",
-        "/images/ArchitecturalDesign/Navjeevan/2.jpg"
+        "/images/ArchitecturalDesign/DhaiDeep/1.jpg",
+        "/images/ArchitecturalDesign/DhaiDeep/2.jpg",
+        "/images/ArchitecturalDesign/DhaiDeep/3.jpg",
+        "/images/ArchitecturalDesign/DhaiDeep/4.jpg",
+        "/images/ArchitecturalDesign/DhaiDeep/5.jpg",
       ],
     },
     {
@@ -67,11 +69,44 @@ const ArchitecturalDesign = () => {
     },
     {
       name: "Medical College Auditorium",
-      mainImage:
-        "/images/ArchitecturalDesign/Medical_clg/2.jpg",
+      mainImage: "/images/ArchitecturalDesign/Medical_clg/2.jpg",
       thumbnails: [
         "/images/ArchitecturalDesign/Medical_clg/1.jpg",
-        "/images/ArchitecturalDesign/Medical_clg/2.jpg"
+        "/images/ArchitecturalDesign/Medical_clg/2.jpg",
+      ],
+    },
+    {
+      name: "Kapish Tower",
+      mainImage: "/images/ArchitecturalDesign/KapishTower/1.jpg",
+      thumbnails: [
+        "/images/ArchitecturalDesign/KapishTower/1.jpg",
+        "/images/ArchitecturalDesign/KapishTower/2.jpg",
+        "/images/ArchitecturalDesign/KapishTower/3.jpg",
+        "/images/ArchitecturalDesign/KapishTower/4.jpg",
+      ],
+    },
+    {
+      name: "Amar Jain Hospital",
+      mainImage: "/images/ArchitecturalDesign/AmarJainHospital/3.jpg",
+      thumbnails: [
+        "/images/ArchitecturalDesign/AmarJainHospital/1.jpg",
+        "/images/ArchitecturalDesign/AmarJainHospital/2.jpg",
+        "/images/ArchitecturalDesign/AmarJainHospital/3.jpg",
+        "/images/ArchitecturalDesign/AmarJainHospital/4.jpg",
+        "/images/ArchitecturalDesign/AmarJainHospital/5.jpg",
+        "/images/ArchitecturalDesign/AmarJainHospital/6.jpg",
+      ],
+    },
+    {
+      name: "Todarmal Smarak",
+      mainImage: "/images/ArchitecturalDesign/TodarmalSmarak/3.jpg",
+      thumbnails: [
+        "/images/ArchitecturalDesign/TodarmalSmarak/1.jpg",
+        "/images/ArchitecturalDesign/TodarmalSmarak/2.jpg",
+        "/images/ArchitecturalDesign/TodarmalSmarak/3.jpg",
+        "/images/ArchitecturalDesign/TodarmalSmarak/4.jpg",
+        "/images/ArchitecturalDesign/TodarmalSmarak/5.jpg",
+        "/images/ArchitecturalDesign/TodarmalSmarak/6.jpg",
       ],
     },
   ];
