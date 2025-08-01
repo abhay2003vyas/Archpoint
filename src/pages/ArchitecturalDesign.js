@@ -48,7 +48,7 @@ const ArchitecturalDesign = () => {
     },
     {
       name: "Dhai Dweep Temple",
-      mainImage: "/images/ArchitecturalDesign/DhaiDeep/5.jpg",
+      mainImage: "/images/ArchitecturalDesign/DhaiDeep/4.jpg",
       thumbnails: [
         "/images/ArchitecturalDesign/DhaiDeep/1.jpg",
         "/images/ArchitecturalDesign/DhaiDeep/2.jpg",
@@ -87,7 +87,7 @@ const ArchitecturalDesign = () => {
     },
     {
       name: "Amar Jain Hospital",
-      mainImage: "/images/ArchitecturalDesign/AmarJainHospital/3.jpg",
+      mainImage: "/images/ArchitecturalDesign/AmarJainHospital/2.jpg",
       thumbnails: [
         "/images/ArchitecturalDesign/AmarJainHospital/1.jpg",
         "/images/ArchitecturalDesign/AmarJainHospital/2.jpg",
@@ -99,7 +99,7 @@ const ArchitecturalDesign = () => {
     },
     {
       name: "Todarmal Smarak",
-      mainImage: "/images/ArchitecturalDesign/TodarmalSmarak/3.jpg",
+      mainImage: "/images/ArchitecturalDesign/TodarmalSmarak/5.jpg",
       thumbnails: [
         "/images/ArchitecturalDesign/TodarmalSmarak/1.jpg",
         "/images/ArchitecturalDesign/TodarmalSmarak/2.jpg",
