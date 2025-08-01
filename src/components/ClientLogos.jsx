@@ -4,133 +4,125 @@ const ClientLogos = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const timer = setTimeout(() => setIsVisible(true), 300);
+    return () => clearTimeout(timer);
   }, []);
 
-  // Sample hotel and hospitality clients - replace with actual client logos
   const clients = [
-    { name: "Marriott", logo: "M", color: "bg-red-600" },
-    { name: "Hilton", logo: "H", color: "bg-blue-600" },
-    { name: "Hyatt", logo: "HY", color: "bg-purple-600" },
-    { name: "Four Seasons", logo: "4S", color: "bg-amber-600" },
-    { name: "Ritz Carlton", logo: "RC", color: "bg-emerald-600" },
-    { name: "InterContinental", logo: "IC", color: "bg-indigo-600" },
-    { name: "Sheraton", logo: "S", color: "bg-rose-600" },
-    { name: "Westin", logo: "W", color: "bg-teal-600" },
-    { name: "Waldorf Astoria", logo: "WA", color: "bg-orange-600" },
-    { name: "St. Regis", logo: "SR", color: "bg-cyan-600" },
-    { name: "Conrad", logo: "C", color: "bg-pink-600" },
-    { name: "Grand Hyatt", logo: "GH", color: "bg-violet-600" }
+    { name: "Royal Orchid", logo: "/images/clients/Royal Orchid.jpeg" },
+    { name: "Khama Labels", logo: "/images/clients/Khama Labels.png" },
+    { name: "Kapish", logo: "/images/clients/Kapish_Logo.png" },
+    { name: "Grassfield", logo: "/images/clients/Grassfiled Logo.webp" },
+    { name: "Idea", logo: "/images/clients/IdeaLogo.webp" }
   ];
 
-  const duplicatedClients = [...clients, ...clients];
-
   return (
-    <div className="relative py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
-      </div>
+    <div className="relative py-20 bg-white overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #fbbf24 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}
+      ></div>
+
+      {/* Geometric Accent */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-50 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-yellow-50 to-transparent rounded-full transform -translate-x-24 translate-y-24"></div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-            Trusted by Industry Leaders
+        {/* Header Section */}
+        <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <div className="inline-flex items-center justify-center mb-6">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-400"></div>
+            <span className="mx-4 text-sm font-semibold text-amber-600 uppercase tracking-wider">Our Partners</span>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-400"></div>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+            Trusted by Industry
+            <span className="block text-amber-600">Leaders</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            We're proud to serve the world's most prestigious hotels and hospitality brands, 
-            delivering exceptional service solutions that exceed expectations.
+          
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            We partner with forward-thinking organizations to deliver exceptional results and drive meaningful business growth.
           </p>
-          <div className="mt-8 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
         </div>
 
-        {/* Animated Logo Grid */}
-        <div className="relative">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
-            {clients.map((client, index) => (
-              <div 
-                key={client.name}
-                className={`group relative transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="relative bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 hover:shadow-2xl hover:scale-105 transition-all duration-300 group-hover:bg-white/90">
-                  <div className={`w-16 h-16 ${client.color} rounded-xl flex items-center justify-center text-white font-bold text-xl mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                    {client.logo}
+        {/* Logo Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-16">
+          {clients.map((client, index) => (
+            <div
+              key={index}
+              className={`group relative transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              {/* Card Container */}
+              <div className="relative bg-white rounded-xl border border-gray-100 p-8 h-32 flex items-center justify-center transition-all duration-300 hover:border-amber-200 hover:shadow-lg hover:-translate-y-1 group">
+                {/* Hover Accent */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Logo */}
+                <div className="relative z-10 flex items-center justify-center w-full h-full">
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="max-h-16 max-w-full object-contain transition-all duration-300 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  {/* Fallback */}
+                  <div className="hidden items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-lg text-white font-bold text-xl shadow-lg">
+                    {client.name.charAt(0)}
                   </div>
-                  <h3 className="text-center text-sm font-semibold text-slate-700 group-hover:text-slate-900 transition-colors duration-300">
-                    {client.name}
-                  </h3>
                 </div>
-              </div>
-            ))}
-          </div>
 
-          {/* Continuous Scroll Section */}
-          <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl py-8 shadow-2xl">
-            <div className="absolute inset-0 bg-black/10"></div>
-            <div className="relative">
-              <div className="flex animate-scroll space-x-12">
-                {duplicatedClients.map((client, index) => (
-                  <div 
-                    key={`${client.name}-${index}`}
-                    className="flex-shrink-0 flex items-center space-x-4 bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-white/30"
-                  >
-                    <div className={`w-12 h-12 ${client.color} rounded-lg flex items-center justify-center text-white font-bold text-sm`}>
-                      {client.logo}
-                    </div>
-                    <span className="text-white font-semibold text-lg whitespace-nowrap">
-                      {client.name}
-                    </span>
-                  </div>
-                ))}
+                {/* Subtle Border Animation */}
+                <div className="absolute inset-0 rounded-xl border-2 border-amber-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              </div>
+
+              {/* Client Name - Always Visible */}
+              <div className="text-center mt-4">
+                <span className="text-sm font-medium text-gray-700 group-hover:text-amber-700 transition-colors duration-300">
+                  {client.name}
+                </span>
               </div>
             </div>
-          </div>
+          ))}
         </div>
 
         {/* Stats Section */}
-        <div className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="text-center group">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                500+
-              </div>
-              <p className="text-slate-600 font-semibold">Hotels Served</p>
-            </div>
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 transition-all duration-800 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-amber-600 mb-2">500+</div>
+            <div className="text-gray-600 font-medium">Projects Delivered</div>
           </div>
-          <div className="text-center group">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                98%
-              </div>
-              <p className="text-slate-600 font-semibold">Client Satisfaction</p>
-            </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-amber-600 mb-2">50+</div>
+            <div className="text-gray-600 font-medium">Happy Clients</div>
           </div>
-          <div className="text-center group">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                15+
-              </div>
-              <p className="text-slate-600 font-semibold">Years Experience</p>
-            </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-amber-600 mb-2">5+</div>
+            <div className="text-gray-600 font-medium">Years Experience</div>
           </div>
         </div>
-      </div>
 
-      <style jsx>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-        .animate-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
+        {/* Call to Action */}
+        <div className={`text-center transition-all duration-800 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <p className="text-gray-600 mb-6">Ready to join our growing family of successful partners?</p>
+          <button className="inline-flex items-center px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-amber-200">
+            <span>Start Your Project</span>
+            <svg className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
