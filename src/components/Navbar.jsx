@@ -116,14 +116,18 @@ const Navbar = () => {
                   animation: `fadeInDown 0.8s ease-out forwards ${idx * 100}ms`,
                 }}
               >
-                <Link
-                  to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="relative group"
-                >
-                  {item}
+                {item === "Projects" ? (
+                  <span className="relative group cursor-pointer">{item}</span>
+                ) : (
+                  <Link
+                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    className="relative group"
+                  >
+                    {item}
 
-                  <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                </Link>
+                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                )}
 
                 {/* Center Navbar Dropdown */}
                 {item === "Projects" && (
@@ -166,13 +170,18 @@ const Navbar = () => {
                     }ms`,
                   }}
                 >
-                  <Link
-                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="relative group"
-                  >
-                    {item}
-                  </Link>
-
+                  {item === "Projects" ? (
+                    <span className="relative group cursor-pointer">
+                      {item}
+                    </span>
+                  ) : (
+                    <Link
+                      to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                      className="relative group"
+                    >
+                      {item}
+                    </Link>
+                  )}
                   {item === "Projects" && (
                     <div className="absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-out">
                       <div className="w-64 bg-white shadow-2xl rounded-lg border border-gray-200 overflow-hidden transform scale-95 group-hover:scale-100 transition-all duration-500 ease-out">
