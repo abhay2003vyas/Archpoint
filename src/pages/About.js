@@ -21,6 +21,8 @@ import {
   Target,
   Heart,
 } from "lucide-react";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 import bgImage from "../assets/p1.jpg"; // Use your image path here
 import d1 from "../assets/director1.png";
 import d2 from "../assets/director2.png";
@@ -123,33 +125,35 @@ const PMCLandingPage = () => {
   ];
 
   const stats = [
-    {
-      number: "300+",
-      label: "Projects",
-      subtitle: "Thanks to all visionaries for believing in Arch Point",
-    },
-    {
-      number: "10+",
-      label: "Cities",
-      subtitle: "We believe in growing together",
-    },
-    {
-      number: "50+",
-      label: "Team Members",
-      subtitle:
-        "Dedicated and integrated team which believes design is our love",
-    },
-    {
-      number: "ISO",
-      label: "Certified",
-      subtitle: "Recognised for our commitment",
-    },
-    {
-      number: "Govt.",
-      label: "Recognised",
-      subtitle: "Recognised as startup by Government of India",
-    },
-  ];
+  {
+    number: 300,
+    suffix: "+",
+    label: "Projects",
+    subtitle: "Thanks to all visionaries for believing in Arch Point",
+  },
+  {
+    number: 10,
+    suffix: "+",
+    label: "Cities",
+    subtitle: "We believe in growing together",
+  },
+  {
+    number: 50,
+    suffix: "+",
+    label: "Team Members",
+    subtitle: "Dedicated and integrated team which believes design is our love",
+  },
+  {
+    number: null,
+    label: "ISO",
+    subtitle: "Recognised for our commitment",
+  },
+  {
+    number: null,
+    label: "Govt.",
+    subtitle: "Recognised as startup by Government of India",
+  },
+];
 
   const services = [
     "Residential Projects",
@@ -219,6 +223,10 @@ const PMCLandingPage = () => {
       projects: "150+",
     },
   ];
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3, // Adjust if needed
+  });
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -237,8 +245,8 @@ const PMCLandingPage = () => {
         {/* Foreground Content */}
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Project Management
-            <span className="block text-yellow-400">Consultancy</span>
+            About
+            <span className="text-yellow-400"> ArchPoint</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-4 max-w-3xl mx-auto">
             Having a beautiful home or residence is one of the most important
@@ -301,7 +309,7 @@ const PMCLandingPage = () => {
               <div className="bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-2xl p-8 text-center transform rotate-2 hover:rotate-0 transition-transform">
                 <div className="bg-white rounded-xl p-8">
                   <div className="text-3xl font-bold text-gray-900 mb-4">
-                    PMC Excellence
+                    About Archpoint
                   </div>
                   <div className="text-gray-600 mb-2">
                     Comprehensive solutions in
@@ -435,24 +443,39 @@ const PMCLandingPage = () => {
       </section>
 
       {/* Stats Section - Arch Point Advantages */}
-      <section className="py-20 bg-yellow-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-black mb-4">
-              Arch Point Advantages
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-black">
-                <div className="text-4xl font-bold mb-2">{stat.number}</div>
-                <div className="text-lg font-semibold mb-2">{stat.label}</div>
-                <div className="text-sm opacity-90">{stat.subtitle}</div>
-              </div>
-            ))}
-          </div>
+      <section className="py-20 bg-yellow-500" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-black mb-4">
+            Arch Point Advantages
+          </h2>
         </div>
-      </section>
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-black">
+              <div className="text-4xl font-bold mb-2">
+                {stat.number !== null ? (
+                  <>
+                    {inView ? (
+                      <CountUp end={stat.number} duration={2} />
+                    ) : (
+                      "0"
+                    )}
+                    {stat.suffix}
+                  </>
+                ) : (
+                  stat.label
+                )}
+              </div>
+              <div className="text-lg font-semibold mb-2">
+                {stat.number !== null ? stat.label : ""}
+              </div>
+              <div className="text-sm opacity-90">{stat.subtitle}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
       {/* Testimonials */}
       <section className="py-20">
