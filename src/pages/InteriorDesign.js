@@ -136,7 +136,7 @@ const InteriorDesign = () => {
       quote:
         "Outstanding work! The attention to detail and creative solutions made our dream home a reality.",
       rating: 5,
-    },
+    }
   ];
 
   // Auto-slide hero carousel
