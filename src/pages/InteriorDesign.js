@@ -1,101 +1,141 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Phone, Mail, User, Building, Users, Globe, Star, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Phone,
+  Mail,
+  User,
+  Building,
+  Users,
+  Globe,
+  Star,
+  ArrowRight,
+} from "lucide-react";
 
 const InteriorDesign = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentProject, setCurrentProject] = useState(0);
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [formData, setFormData] = useState({ name: '', contact: '', email: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    contact: "",
+    email: "",
+  });
   const [formErrors, setFormErrors] = useState({});
 
   // Hero carousel images - Interior focused
   const heroImages = [
-    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=800&fit=crop', // Modern living room
-    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1920&h=800&fit=crop', // Luxury bedroom
-    'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&h=800&fit=crop'  // Modern kitchen
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=800&fit=crop", // Modern living room
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1920&h=800&fit=crop", // Luxury bedroom
+    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&h=800&fit=crop", // Modern kitchen
   ];
 
   // Project data with images matching your requirements
   const projects = [
     {
-      name: 'Bhagwati ji Residence',
-      mainImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop',
+      name: "Air BNB",
+      mainImage: "/images/InteriorDesign/AirBNB/1.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1615529182904-14819c35db37?w=200&h=150&fit=crop'
-      ]
+        "/images/InteriorDesign/AirBNB/1.jpg",
+        "/images/InteriorDesign/AirBNB/2.jpg",
+        "/images/InteriorDesign/AirBNB/3.jpg",
+        "/images/InteriorDesign/AirBNB/4.jpg",
+        "/images/InteriorDesign/AirBNB/5.jpg",
+        "/images/InteriorDesign/AirBNB/6.jpg",
+        "/images/InteriorDesign/AirBNB/7.jpg",
+        "/images/InteriorDesign/AirBNB/8.jpg",
+        "/images/InteriorDesign/AirBNB/9.jpg",
+        "/images/InteriorDesign/AirBNB/10.jpg",
+        "/images/InteriorDesign/AirBNB/11.jpg",
+        "/images/InteriorDesign/AirBNB/12.jpg",
+      ],
     },
     {
-      name: 'Flat Interior - Gaurav Sharma',
-      mainImage: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop',
+      name: "SP Bharil Ji Flat",
+      mainImage: "/images/InteriorDesign/SPBharilJiFlat/1.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1615529328331-f8917597711f?w=200&h=150&fit=crop'
-      ]
+        "/images/InteriorDesign/SPBharilJiFlat/1.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/2.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/3.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/4.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/5.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/6.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/7.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/8.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/9.jpg",
+        "/images/InteriorDesign/SPBharilJiFlat/10.jpg",
+      ],
     },
     {
-      name: 'Grassfield Resort Interior',
-      mainImage: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&h=600&fit=crop',
+      name: "Bhagwati Ji",
+      mainImage: "/images/InteriorDesign/BhagwatiJi/3.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1574691250077-03a929faece5?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=200&h=150&fit=crop'
-      ]
+        "/images/InteriorDesign/BhagwatiJi/1.jpg",
+        "/images/InteriorDesign/BhagwatiJi/2.jpg",
+        "/images/InteriorDesign/BhagwatiJi/3.jpg",
+        "/images/InteriorDesign/BhagwatiJi/4.jpg",
+        "/images/InteriorDesign/BhagwatiJi/5.jpg",
+        "/images/InteriorDesign/BhagwatiJi/6.jpg",
+        "/images/InteriorDesign/BhagwatiJi/7.jpg",
+      ],
     },
     {
-      name: 'Hotel Kapish Interior',
-      mainImage: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop',
+      name: "Gaurav Ji",
+      mainImage: "/images/InteriorDesign/GauravJi/1.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=200&h=150&fit=crop'
-      ]
+        "/images/InteriorDesign/GauravJi/1.jpg",
+        "/images/InteriorDesign/GauravJi/2.jpg",
+        "/images/InteriorDesign/GauravJi/3.jpg",
+        "/images/InteriorDesign/GauravJi/4.jpg",
+        "/images/InteriorDesign/GauravJi/5.jpg",
+        "/images/InteriorDesign/GauravJi/6.jpg",
+        "/images/InteriorDesign/GauravJi/7.jpg",
+        "/images/InteriorDesign/GauravJi/8.jpg",
+      ],
     },
     {
-      name: 'Vivek Kalra ji Residence',
-      mainImage: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop',
+      name: "Vivek Kalra Ji Residence",
+      mainImage: "/images/InteriorDesign/VivekKalraJiResidence/4.jpg",
       thumbnails: [
-        'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1615529328331-f8917597711f?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1615529182904-14819c35db37?w=200&h=150&fit=crop',
-        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&h=150&fit=crop'
-      ]
-    }
+        "/images/InteriorDesign/VivekKalraJiResidence/1.jpg",
+        "/images/InteriorDesign/VivekKalraJiResidence/2.jpg",
+        "/images/InteriorDesign/VivekKalraJiResidence/3.jpg",
+        "/images/InteriorDesign/VivekKalraJiResidence/4.jpg",
+        "/images/InteriorDesign/VivekKalraJiResidence/5.jpg",
+      ],
+    },
   ];
 
   // Milestones
   const milestones = [
-    { icon: Building, number: '500+', label: 'Interiors' },
-    { icon: User, number: '20 Yr', label: 'Experience' },
-    { icon: Users, number: '100+', label: 'Happy Clients' },
-    { icon: Globe, number: 'Premium', label: 'Quality' }
+    { icon: Building, number: "500+", label: "Interiors" },
+    { icon: User, number: "20 Yr", label: "Experience" },
+    { icon: Users, number: "100+", label: "Happy Clients" },
+    { icon: Globe, number: "Premium", label: "Quality" },
   ];
 
   // Testimonials
   const testimonials = [
     {
-      name: 'Bhagwati Sharma',
-      role: 'Homeowner',
-      quote: 'Arch Point transformed our home into a masterpiece. Every corner reflects our personality while maintaining functionality.',
-      rating: 5
+      name: "Bhagwati Sharma",
+      role: "Homeowner",
+      quote:
+        "Arch Point transformed our home into a masterpiece. Every corner reflects our personality while maintaining functionality.",
+      rating: 5,
     },
     {
-      name: 'Gaurav Sharma',
-      role: 'Apartment Owner',
-      quote: 'The interior design exceeded our expectations. The team understood our vision perfectly and delivered beyond imagination.',
-      rating: 5
+      name: "Gaurav Sharma",
+      role: "Apartment Owner",
+      quote:
+        "The interior design exceeded our expectations. The team understood our vision perfectly and delivered beyond imagination.",
+      rating: 5,
     },
     {
-      name: 'Vivek Kalra',
-      role: 'Residence Owner',
-      quote: 'Outstanding work! The attention to detail and creative solutions made our dream home a reality.',
-      rating: 5
+      name: "Vivek Kalra",
+      role: "Residence Owner",
+      quote:
+        "Outstanding work! The attention to detail and creative solutions made our dream home a reality.",
+      rating: 5,
     }
   ];
 
@@ -110,10 +150,11 @@ const InteriorDesign = () => {
   // Form validation
   const validateForm = () => {
     const errors = {};
-    if (!formData.name.trim()) errors.name = 'Name is required';
-    if (!formData.contact.trim()) errors.contact = 'Contact number is required';
-    if (!formData.email.trim()) errors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = 'Email is invalid';
+    if (!formData.name.trim()) errors.name = "Name is required";
+    if (!formData.contact.trim()) errors.contact = "Contact number is required";
+    if (!formData.email.trim()) errors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      errors.email = "Email is invalid";
     return errors;
   };
 
@@ -122,16 +163,22 @@ const InteriorDesign = () => {
     const errors = validateForm();
     setFormErrors(errors);
     if (Object.keys(errors).length === 0) {
-      alert('Form submitted successfully!');
-      setFormData({ name: '', contact: '', email: '' });
+      alert("Form submitted successfully!");
+      setFormData({ name: "", contact: "", email: "" });
     }
   };
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+  const prevSlide = () =>
+    setCurrentSlide(
+      (prev) => (prev - 1 + heroImages.length) % heroImages.length
+    );
 
-  const nextProject = () => setCurrentProject((prev) => (prev + 1) % projects.length);
-  const prevProject = () => setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
+  const nextProject = () =>
+    setCurrentProject((prev) => (prev + 1) % projects.length);
+  const prevProject = () =>
+    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -142,7 +189,7 @@ const InteriorDesign = () => {
             <div
               key={index}
               className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${
-                index === currentSlide ? 'translate-x-0' : 'translate-x-full'
+                index === currentSlide ? "translate-x-0" : "translate-x-full"
               }`}
             >
               <img
@@ -154,11 +201,12 @@ const InteriorDesign = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Hero Content */}
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-5xl md:text-7xl font-bold text-white text-center tracking-wide">
-            <span className="text-yellow-400">Interior</span><br />
+            <span className="text-yellow-400">Interior</span>
+            <br />
             Design
           </h1>
         </div>
@@ -184,7 +232,9 @@ const InteriorDesign = () => {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                index === currentSlide ? 'bg-yellow-400' : 'bg-white bg-opacity-50'
+                index === currentSlide
+                  ? "bg-yellow-400"
+                  : "bg-white bg-opacity-50"
               }`}
             />
           ))}
@@ -198,75 +248,104 @@ const InteriorDesign = () => {
             {/* Left Column */}
             <div>
               <h2 className="text-4xl font-bold mb-6 text-gray-800">
-                Interior Design <span className="text-yellow-500">Services</span>
+                Interior Design{" "}
+                <span className="text-yellow-500">Services</span>
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We provide complete interior design services to make your space remarkable.
+                We provide complete interior design services to make your space
+                remarkable.
               </p>
-              
+
               {showFullDescription && (
                 <div className="text-gray-600 leading-relaxed mb-6">
                   <p className="mb-4">
-                    At Arch Point, we bring together deep expertise and a passion for creativity to deliver innovative interior design solutions tailored to each client's lifestyle. Our team of best-in-class designers works closely with you to understand your vision, preferences, and functional needs—transforming ideas into inspiring, livable spaces.
+                    At Arch Point, we bring together deep expertise and a
+                    passion for creativity to deliver innovative interior design
+                    solutions tailored to each client's lifestyle. Our team of
+                    best-in-class designers works closely with you to understand
+                    your vision, preferences, and functional needs—transforming
+                    ideas into inspiring, livable spaces.
                   </p>
                   <p className="mb-4">
-                    From concept to completion, we ensure every detail reflects your unique style, turning your dream home into a beautifully designed reality.
+                    From concept to completion, we ensure every detail reflects
+                    your unique style, turning your dream home into a
+                    beautifully designed reality.
                   </p>
                 </div>
               )}
-              
+
               <button
                 onClick={() => setShowFullDescription(!showFullDescription)}
                 className="inline-flex items-center px-6 py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300 font-semibold"
               >
-                {showFullDescription ? 'Read Less' : 'Read More'}
+                {showFullDescription ? "Read Less" : "Read More"}
                 <ArrowRight className="ml-2" size={20} />
               </button>
             </div>
 
             {/* Right Column - Contact Form */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-gray-800">Contact Us</h3>
+              <h3 className="text-2xl font-bold mb-6 text-gray-800">
+                Contact Us
+              </h3>
               <div className="space-y-6">
                 <div>
                   <input
                     type="text"
                     placeholder="Your Name"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.name ? 'border-red-500' : 'border-gray-300'
+                      formErrors.name ? "border-red-500" : "border-gray-300"
                     }`}
                   />
-                  {formErrors.name && <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>}
+                  {formErrors.name && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.name}
+                    </p>
+                  )}
                 </div>
-                
+
                 <div>
                   <input
                     type="tel"
                     placeholder="Contact Number"
                     value={formData.contact}
-                    onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, contact: e.target.value })
+                    }
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.contact ? 'border-red-500' : 'border-gray-300'
+                      formErrors.contact ? "border-red-500" : "border-gray-300"
                     }`}
                   />
-                  {formErrors.contact && <p className="text-red-500 text-sm mt-1">{formErrors.contact}</p>}
+                  {formErrors.contact && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.contact}
+                    </p>
+                  )}
                 </div>
-                
+
                 <div>
                   <input
                     type="email"
                     placeholder="Email Address"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.email ? 'border-red-500' : 'border-gray-300'
+                      formErrors.email ? "border-red-500" : "border-gray-300"
                     }`}
                   />
-                  {formErrors.email && <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>}
+                  {formErrors.email && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.email}
+                    </p>
+                  )}
                 </div>
-                
+
                 <button
                   onClick={handleSubmit}
                   className="w-full py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300 font-semibold"
@@ -288,11 +367,15 @@ const InteriorDesign = () => {
               <h2 className="text-4xl font-bold mb-6 text-gray-800">
                 Our <span className="text-yellow-500">USP</span>
               </h2>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-700">Lifestyle-Centered Design</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-gray-700">
+                Lifestyle-Centered Design
+              </h3>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Our interior design philosophy centers on understanding your lifestyle and creating spaces 
-                that not only look beautiful but enhance your daily living experience. We blend aesthetics 
-                with functionality, ensuring every element serves a purpose while reflecting your personal style.
+                Our interior design philosophy centers on understanding your
+                lifestyle and creating spaces that not only look beautiful but
+                enhance your daily living experience. We blend aesthetics with
+                functionality, ensuring every element serves a purpose while
+                reflecting your personal style.
               </p>
             </div>
 
@@ -323,8 +406,12 @@ const InteriorDesign = () => {
                   <div className="bg-white bg-opacity-20 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                     <IconComponent size={32} className="text-white" />
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-2">{milestone.number}</h3>
-                  <p className="text-yellow-200 font-semibold">{milestone.label}</p>
+                  <h3 className="text-3xl font-bold text-white mb-2">
+                    {milestone.number}
+                  </h3>
+                  <p className="text-yellow-200 font-semibold">
+                    {milestone.label}
+                  </p>
                 </div>
               );
             })}
@@ -338,7 +425,7 @@ const InteriorDesign = () => {
           <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
             Featured <span className="text-yellow-500">Projects</span>
           </h2>
-          
+
           {/* Main Project Image */}
           <div className="relative mb-8">
             <img
@@ -348,9 +435,11 @@ const InteriorDesign = () => {
             />
             <div className="absolute inset-0 bg-black bg-opacity-30 rounded-2xl"></div>
             <div className="absolute bottom-6 left-6">
-              <h3 className="text-3xl font-bold text-white">{projects[currentProject].name}</h3>
+              <h3 className="text-3xl font-bold text-white">
+                {projects[currentProject].name}
+              </h3>
             </div>
-            
+
             {/* Project Navigation */}
             <button
               onClick={prevProject}
@@ -391,16 +480,24 @@ const InteriorDesign = () => {
               <div key={index} className="bg-white rounded-2xl p-8 shadow-xl">
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={20} className="text-yellow-500 fill-current" />
+                    <Star
+                      key={i}
+                      size={20}
+                      className="text-yellow-500 fill-current"
+                    />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 italic">"{testimonial.quote}"</p>
+                <p className="text-gray-600 mb-6 italic">
+                  "{testimonial.quote}"
+                </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
+                    <h4 className="font-semibold text-gray-800">
+                      {testimonial.name}
+                    </h4>
                     <p className="text-gray-500 text-sm">{testimonial.role}</p>
                   </div>
                 </div>
@@ -417,14 +514,17 @@ const InteriorDesign = () => {
             <span className="text-yellow-500">Arch</span> Point
           </h3>
           <p className="text-gray-400 mb-8">
-            Creating interior design excellence through innovative solutions and lifestyle-centered design.
+            Creating interior design excellence through innovative solutions and
+            lifestyle-centered design.
           </p>
           <div className="flex justify-center space-x-6">
             <Phone className="text-yellow-500" size={24} />
             <Mail className="text-yellow-500" size={24} />
             <Globe className="text-yellow-500" size={24} />
           </div>
-          <p className="text-gray-500 mt-8">&copy; 2025 Arch Point. All rights reserved.</p>
+          <p className="text-gray-500 mt-8">
+            &copy; 2025 Arch Point. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
