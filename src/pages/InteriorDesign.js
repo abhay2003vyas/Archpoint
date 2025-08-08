@@ -11,7 +11,9 @@ import {
   Star,
   ArrowRight,
 } from "lucide-react";
-
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 const InteriorDesign = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentProject, setCurrentProject] = useState(0);
@@ -105,14 +107,22 @@ const InteriorDesign = () => {
       ],
     },
   ];
+const milestones = [
+  { icon: Building, number: "500+", label: "Interiors" },
+  { icon: User, number: "20 Yr", label: "Experience" },
+  { icon: Users, number: "100+", label: "Happy Clients" },
+  { icon: Globe, number: "Premium", label: "Quality" },
+];
+ const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
 
-  // Milestones
-  const milestones = [
-    { icon: Building, number: "500+", label: "Interiors" },
-    { icon: User, number: "20 Yr", label: "Experience" },
-    { icon: Users, number: "100+", label: "Happy Clients" },
-    { icon: Globe, number: "Premium", label: "Quality" },
-  ];
+  const splitNumber = (numStr) => {
+    const match = numStr.match(/^(\d+)(.*)$/);
+    return match ? { value: parseInt(match[1]), suffix: match[2] } : null;
+  };
+
 
   // Testimonials
   const testimonials = [
@@ -393,31 +403,46 @@ const InteriorDesign = () => {
       </section>
 
       {/* Milestones Section */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-yellow-500">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-white">
-            Our <span className="text-yellow-200">Milestones</span>
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {milestones.map((milestone, index) => {
-              const IconComponent = milestone.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="bg-white bg-opacity-20 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                    <IconComponent size={32} className="text-white" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-white mb-2">
-                    {milestone.number}
-                  </h3>
-                  <p className="text-yellow-200 font-semibold">
-                    {milestone.label}
-                  </p>
+      <section className="py-20 px-4 md:px-8 lg:px-16 bg-yellow-500" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-12 text-white">
+          Our <span className="text-yellow-200">Milestones</span>
+        </h2>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {milestones.map((milestone, index) => {
+            const IconComponent = milestone.icon;
+            const numberParts = splitNumber(milestone.number);
+
+            return (
+              <motion.div
+                key={index}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="bg-white bg-opacity-20 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                  <IconComponent size={32} className="text-white" />
                 </div>
-              );
-            })}
-          </div>
+                <h3 className="text-3xl font-bold text-white mb-2">
+                  {numberParts
+                    ? (
+                      <>
+                        {inView ? <CountUp end={numberParts.value} duration={2} /> : "0"}
+                        {numberParts.suffix}
+                      </>
+                    )
+                    : milestone.number}
+                </h3>
+                <p className="text-yellow-200 font-semibold">
+                  {milestone.label}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Featured Projects Section */}
       <section className="py-20 px-4 md:px-8 lg:px-16">

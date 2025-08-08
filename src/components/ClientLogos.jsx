@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 const ClientLogos = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -15,6 +16,21 @@ const ClientLogos = () => {
     { name: "Grassfield", logo: "/images/clients/Grassfiled Logo.webp" },
     { name: "Idea", logo: "/images/clients/IdeaLogo.webp" }
   ];
+const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
+  const stats = [
+    { number: "500+", label: "Projects Delivered" },
+    { number: "50+", label: "Happy Clients" },
+    { number: "5+", label: "Years Experience" },
+  ];
+
+  const splitNumber = (numStr) => {
+    const match = numStr.match(/^(\d+)(.*)$/);
+    return match ? { value: parseInt(match[1]), suffix: match[2] } : null;
+  };
 
   return (
     <div className="relative py-20 bg-white overflow-hidden">
@@ -97,20 +113,35 @@ const ClientLogos = () => {
         </div>
 
         {/* Stats Section */}
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 transition-all duration-800 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-amber-600 mb-2">500+</div>
-            <div className="text-gray-600 font-medium">Projects Delivered</div>
+       <div
+      ref={ref}
+      className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 transition-all duration-800 delay-500 ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      }`}
+    >
+      {stats.map((stat, index) => {
+        const numberParts = splitNumber(stat.number);
+        return (
+          <div key={index} className="text-center">
+            <div className="text-3xl font-bold text-amber-600 mb-2">
+              {numberParts ? (
+                <>
+                  {inView ? (
+                    <CountUp end={numberParts.value} duration={2} />
+                  ) : (
+                    "0"
+                  )}
+                  {numberParts.suffix}
+                </>
+              ) : (
+                stat.number
+              )}
+            </div>
+            <div className="text-gray-600 font-medium">{stat.label}</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-amber-600 mb-2">50+</div>
-            <div className="text-gray-600 font-medium">Happy Clients</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-amber-600 mb-2">5+</div>
-            <div className="text-gray-600 font-medium">Years Experience</div>
-          </div>
-        </div>
+        );
+      })}
+    </div>
 
         {/* Call to Action */}
         <div className={`text-center transition-all duration-800 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
