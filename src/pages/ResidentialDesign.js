@@ -15,7 +15,9 @@ import {
   MapPin,
   Heart,
 } from "lucide-react";
-
+import CountUp from "react-countup";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 const ResidentialDesign = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentProject, setCurrentProject] = useState(0);
@@ -132,7 +134,16 @@ const ResidentialDesign = () => {
     { icon: Globe, number: "Govt.", label: "Recognised" },
     { icon: Heart, number: "Quantum", label: "Architecture" },
   ];
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
 
+  // Split number into numeric part and suffix
+  const splitNumber = (numStr) => {
+    const match = numStr.match(/^(\d+)(.*)$/);
+    return match ? { value: parseInt(match[1]), suffix: match[2] } : null;
+  };
   // Residential Design Services
   const designServices = [
     {
@@ -466,29 +477,50 @@ const ResidentialDesign = () => {
       </section>
 
       {/* Arch Point Advantages Section */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-yellow-500">
+      <section className="py-20 px-4 md:px-8 lg:px-16 bg-yellow-500" ref={ref}>
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 text-white">
             Arch Point <span className="text-yellow-200">Advantages</span>
           </h2>
+
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
             {advantages.map((advantage, index) => {
               const IconComponent = advantage.icon;
+              const numberParts = splitNumber(advantage.number);
+
               return (
-                <div key={index} className="text-center">
+                <motion.div
+                  key={index}
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
                   <div className="bg-white bg-opacity-20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <IconComponent size={24} className="text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">
-                    {advantage.number}
+                    {numberParts ? (
+                      <>
+                        {inView ? (
+                          <CountUp end={numberParts.value} duration={2} />
+                        ) : (
+                          "0"
+                        )}
+                        {numberParts.suffix}
+                      </>
+                    ) : (
+                      advantage.number
+                    )}
                   </h3>
                   <p className="text-yellow-200 font-semibold text-sm">
                     {advantage.label}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
+
           <div className="text-center mt-8">
             <p className="text-yellow-200 text-lg italic">
               Thanks to all visionaries for believing in Arch Point
