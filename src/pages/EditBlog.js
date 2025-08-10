@@ -48,7 +48,7 @@ export default function EditBlog() {
   const fetchBlog = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`http://localhost:5000/api/blogs`);
+      const response = await fetch(`https://archpoint.onrender.com/api/blogs`);
       const data = await response.json();
       const found = data.find((b) => b._id === id);
       if (found) setBlog(found);
@@ -81,8 +81,8 @@ export default function EditBlog() {
       const blogData = { ...blog, status };
       
       const url = id === "new" 
-        ? "http://localhost:5000/api/blogs"
-        : `http://localhost:5000/api/blogs/${id}`;
+        ? "https://archpoint.onrender.com/api/blogs"
+        : `https://archpoint.onrender.com/api/blogs/${id}`;
       
       const method = id === "new" ? "POST" : "PUT";
       
