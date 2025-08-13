@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import VideoSection from './components/VideoSection';
 import FeaturedProjects from './components/FeaturedProjects';
@@ -33,10 +33,19 @@ const Home = () => (
 
 function App() {
   const token = localStorage.getItem("token");
+  const location = useLocation();
+
+  // Pages where Navbar should be hidden
+  const hideNavbarRoutes = ['/admin', '/edit'];
+
+  // Check if current route starts with any of the hideNavbarRoutes
+  const shouldHideNavbar = hideNavbarRoutes.some(path =>
+    location.pathname.startsWith(path)
+  );
 
   return (
     <div className="font-sans bg-beige text-dark">
-      <Navbar />
+      {!shouldHideNavbar && <Navbar />}
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
