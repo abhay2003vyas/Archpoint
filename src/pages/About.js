@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Footer from '../components/Footer';
+import Inquiry from "../components/inquiry";
 import {
   ChevronRight,
   Clock,
@@ -125,35 +127,36 @@ const PMCLandingPage = () => {
   ];
 
   const stats = [
-  {
-    number: 300,
-    suffix: "+",
-    label: "Projects",
-    subtitle: "Thanks to all visionaries for believing in Arch Point",
-  },
-  {
-    number: 10,
-    suffix: "+",
-    label: "Cities",
-    subtitle: "We believe in growing together",
-  },
-  {
-    number: 50,
-    suffix: "+",
-    label: "Team Members",
-    subtitle: "Dedicated and integrated team which believes design is our love",
-  },
-  {
-    number: null,
-    label: "ISO",
-    subtitle: "Recognised for our commitment",
-  },
-  {
-    number: null,
-    label: "Govt.",
-    subtitle: "Recognised as startup by Government of India",
-  },
-];
+    {
+      number: 300,
+      suffix: "+",
+      label: "Projects",
+      subtitle: "Thanks to all visionaries for believing in Arch Point",
+    },
+    {
+      number: 10,
+      suffix: "+",
+      label: "Cities",
+      subtitle: "We believe in growing together",
+    },
+    {
+      number: 50,
+      suffix: "+",
+      label: "Team Members",
+      subtitle:
+        "Dedicated and integrated team which believes design is our love",
+    },
+    {
+      number: null,
+      label: "ISO",
+      subtitle: "Recognised for our commitment",
+    },
+    {
+      number: null,
+      label: "Govt.",
+      subtitle: "Recognised as startup by Government of India",
+    },
+  ];
 
   const services = [
     "Residential Projects",
@@ -185,22 +188,14 @@ const PMCLandingPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.phone) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-    console.log("Form submitted:", formData);
-    alert("Thank you for your inquiry! We will contact you soon.");
-    setFormData({ name: "", email: "", phone: "", projectDetails: "" });
-  };
+ 
+
   const directors = [
     {
       id: 1,
       name: "Ar. Amit Khandelwal",
       title: "Principal Architect & Founder",
-      image: d1 ,
+      image: d1,
       description:
         "Dynamic professional with expertise in sustainable design and commercial architecture from Aayojan School of Architecture.",
       expertise: [
@@ -215,7 +210,7 @@ const PMCLandingPage = () => {
       id: 2,
       name: "Ar. Poonam Jain",
       title: "Co-Founder & Design Director",
-      image:d2,
+      image: d2,
       description:
         "Specialized in interior design and residential projects with a keen eye for space planning and aesthetic excellence.",
       expertise: ["Interior Design", "Residential Projects", "Space Planning"],
@@ -256,7 +251,14 @@ const PMCLandingPage = () => {
             Arch Point designs the best architecture plans for you to live your
             dreams with everything precisely designed and decorated.
           </p>
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-4 rounded-lg text-lg transition-colors inline-flex items-center group">
+          <button
+            onClick={() => {
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-4 rounded-lg text-lg transition-colors inline-flex items-center group"
+          >
             Start Your Dream Project
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -444,38 +446,38 @@ const PMCLandingPage = () => {
 
       {/* Stats Section - Arch Point Advantages */}
       <section className="py-20 bg-yellow-500" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-black mb-4">
-            Arch Point Advantages
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-black">
-              <div className="text-4xl font-bold mb-2">
-                {stat.number !== null ? (
-                  <>
-                    {inView ? (
-                      <CountUp end={stat.number} duration={2} />
-                    ) : (
-                      "0"
-                    )}
-                    {stat.suffix}
-                  </>
-                ) : (
-                  stat.label
-                )}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-black mb-4">
+              Arch Point Advantages
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-black">
+                <div className="text-4xl font-bold mb-2">
+                  {stat.number !== null ? (
+                    <>
+                      {inView ? (
+                        <CountUp end={stat.number} duration={2} />
+                      ) : (
+                        "0"
+                      )}
+                      {stat.suffix}
+                    </>
+                  ) : (
+                    stat.label
+                  )}
+                </div>
+                <div className="text-lg font-semibold mb-2">
+                  {stat.number !== null ? stat.label : ""}
+                </div>
+                <div className="text-sm opacity-90">{stat.subtitle}</div>
               </div>
-              <div className="text-lg font-semibold mb-2">
-                {stat.number !== null ? stat.label : ""}
-              </div>
-              <div className="text-sm opacity-90">{stat.subtitle}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Testimonials */}
       <section className="py-20">
@@ -596,13 +598,12 @@ const PMCLandingPage = () => {
               >
                 {/* Image */}
                 <div className="w-full aspect-[4/3]">
-  <img
-    src={director.image}
-    alt={director.name}
-    className="w-full h-full object-contain object-top rounded-t-lg"
-  />
-</div>
-
+                  <img
+                    src={director.image}
+                    alt={director.name}
+                    className="w-full h-full object-contain object-top rounded-t-lg"
+                  />
+                </div>
 
                 {/* Content */}
                 <div className="p-4">
@@ -622,174 +623,13 @@ const PMCLandingPage = () => {
               </div>
             ))}
           </div>
-
-          {/* Simple CTA */}
-          <div className="text-center mt-8">
-            <button className="px-6 py-2 bg-yellow-500 text-white font-medium rounded hover:bg-yellow-600 transition-colors duration-200">
-              Contact Our Team
-            </button>
-          </div>
         </div>
       </section>
       {/* Contact Form */}
-      <section id="contact" className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Ready to Start Your Dream Project?
-            </h2>
-            <p className="text-xl text-gray-600">
-              Let's bring your vision to reality with our expert consultation
-            </p>
-          </div>
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleFormChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                  placeholder="Enter your name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleFormChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                  placeholder="Enter your email"
-                />
-              </div>
-            </div>
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Phone *
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleFormChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                placeholder="Enter your phone number"
-              />
-            </div>
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Project Details
-              </label>
-              <textarea
-                name="projectDetails"
-                value={formData.projectDetails}
-                onChange={handleFormChange}
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                placeholder="Tell us about your dream project..."
-              />
-            </div>
-            <button
-              onClick={handleSubmit}
-              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-4 rounded-lg text-lg transition-colors"
-            >
-              Submit Inquiry - Let's Make Your Dream Reality
-            </button>
-          </div>
-        </div>
-      </section>
+      <Inquiry />
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <div className="text-2xl font-bold mb-4">
-                Arch<span className="text-yellow-500">Point</span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Arch Point Consultants Pvt. Ltd. - A prominent architectural
-                company delivering high quality design and vastu solutions
-                across the country. Your dream is our mission.
-              </p>
-              <div className="flex space-x-4">
-                <Facebook className="w-6 h-6 text-gray-400 hover:text-yellow-500 cursor-pointer transition-colors" />
-                <Twitter className="w-6 h-6 text-gray-400 hover:text-yellow-500 cursor-pointer transition-colors" />
-                <Linkedin className="w-6 h-6 text-gray-400 hover:text-yellow-500 cursor-pointer transition-colors" />
-                <Instagram className="w-6 h-6 text-gray-400 hover:text-yellow-500 cursor-pointer transition-colors" />
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
-              <div className="space-y-2 text-gray-400">
-                <div className="flex items-center">
-                  <Mail className="w-4 h-4 mr-2" />
-                  <span>info@archpoint.in</span>
-                </div>
-                <div className="flex items-center">
-                  <Phone className="w-4 h-4 mr-2" />
-                  <span>Contact for consultation</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  <span>India</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-              <div className="space-y-2 text-gray-400">
-                <div>
-                  <a
-                    href="#home"
-                    className="hover:text-yellow-500 transition-colors"
-                  >
-                    Home
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#services"
-                    className="hover:text-yellow-500 transition-colors"
-                  >
-                    Services
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#about"
-                    className="hover:text-yellow-500 transition-colors"
-                  >
-                    About
-                  </a>
-                </div>
-                <div>
-                  <a
-                    href="#contact"
-                    className="hover:text-yellow-500 transition-colors"
-                  >
-                    Contact
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>
-              &copy; 2024 Arch Point Consultants Pvt. Ltd. All rights reserved.
-              | Your Dream is Our Mission
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
