@@ -8,7 +8,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   // Static credentials check
-  if (email === "vyas0994@gmail.com" && password === "Abhay@1234") {
+  if (email === "contactarchpoint@gmail.com" && password === "Archpoint@1234") {
     let admin = await Admin.findOne({ email });
     if (!admin) {
       admin = await Admin.create({ email, password });
