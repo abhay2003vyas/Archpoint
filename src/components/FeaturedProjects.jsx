@@ -3,54 +3,44 @@ import { useEffect, useState } from "react";
 const PROJECT_STORIES = [
   {
     id: 1,
-    title: "Modern Public Library",
+    title: "GRASS Feild Valley",
     description:
       "A contemporary library design that bridges traditional knowledge with digital innovation.",
     image:
-      "https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=1200&q=80",
+      "/images/home/1.jpg",
     category: "Public Architecture",
     year: "2024",
   },
   {
     id: 2,
-    title: "Sustainable Office Complex",
+    title: "Gaurav Ji Flat",
     description:
       "Green building practices meet modern workplace design in this innovative commercial space.",
     image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
-    category: "Commercial",
+      "/images/home/2.jpg",
+    category: "Interior Degign",
     year: "2023",
   },
   {
     id: 3,
-    title: "Urban Residential Tower",
+    title: "Hotel Kapish",
     description:
       "Redefining city living with thoughtful design and community-focused amenities.",
     image:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
-    category: "Residential",
+      "/images/home/3.jpg",
+    category: "Architectural Design",
     year: "2024",
   },
   {
     id: 4,
-    title: "Cultural Arts Center",
+    title: "Bhagwati Ji Residence",
     description:
       "A dynamic space that celebrates creativity and brings the community together.",
     image:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
+      "/images/home/4.jpg",
     category: "Cultural",
     year: "2023",
-  },
-  {
-    id: 5,
-    title: "Eco-Friendly Campus",
-    description:
-      "Educational environment designed with sustainability and student well-being in mind.",
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
-    category: "Educational",
-    year: "2024",
-  },
+  }
 ];
 
 const ProjectStories = ({ autoplay = true, projects = [] }) => {
