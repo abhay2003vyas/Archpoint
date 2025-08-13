@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Contact from "../components/contact";
+import Footer from '../components/Footer';
 import {
   ChevronLeft,
   ChevronRight,
@@ -22,12 +24,6 @@ const ProjectManagementConsultancy = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentProject, setCurrentProject] = useState(0);
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    contact: "",
-    email: "",
-  });
-  const [formErrors, setFormErrors] = useState({});
 
   // Hero carousel images - PMC focused
   const heroImages = [
@@ -82,7 +78,7 @@ const ProjectManagementConsultancy = () => {
         "/images/pmc/KailashJiResidence/8.jpg",
         "/images/pmc/KailashJiResidence/9.jpg",
       ],
-    }
+    },
   ];
 
   // Milestones
@@ -92,7 +88,7 @@ const ProjectManagementConsultancy = () => {
     { icon: Clock, number: "98%", label: "On-Time Delivery" },
     { icon: Target, number: "100%", label: "Client Satisfaction" },
   ];
-const { ref, inView } = useInView({
+  const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
@@ -100,7 +96,9 @@ const { ref, inView } = useInView({
   // Helper: Extract numeric part & suffix
   const splitNumber = (numStr) => {
     const match = numStr.match(/^(\d+)(.*)$/);
-    return match ? { value: parseInt(match[1]), suffix: match[2] } : { value: 0, suffix: "" };
+    return match
+      ? { value: parseInt(match[1]), suffix: match[2] }
+      : { value: 0, suffix: "" };
   };
   // PMC Services
   const pmcServices = [
@@ -160,26 +158,6 @@ const { ref, inView } = useInView({
   }, []);
 
   // Form validation
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.name.trim()) errors.name = "Name is required";
-    if (!formData.contact.trim()) errors.contact = "Contact number is required";
-    if (!formData.email.trim()) errors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      errors.email = "Email is invalid";
-    return errors;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errors = validateForm();
-    setFormErrors(errors);
-    if (Object.keys(errors).length === 0) {
-      alert("Form submitted successfully!");
-      setFormData({ name: "", contact: "", email: "" });
-    }
-  };
-
   const nextSlide = () =>
     setCurrentSlide((prev) => (prev + 1) % heroImages.length);
   const prevSlide = () =>
@@ -298,76 +276,7 @@ const { ref, inView } = useInView({
             </div>
 
             {/* Right Column - Contact Form */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-gray-800">
-                Contact Us
-              </h3>
-              <div className="space-y-6">
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.name ? "border-red-500" : "border-gray-300"
-                    }`}
-                  />
-                  {formErrors.name && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.name}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <input
-                    type="tel"
-                    placeholder="Contact Number"
-                    value={formData.contact}
-                    onChange={(e) =>
-                      setFormData({ ...formData, contact: e.target.value })
-                    }
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.contact ? "border-red-500" : "border-gray-300"
-                    }`}
-                  />
-                  {formErrors.contact && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.contact}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.email ? "border-red-500" : "border-gray-300"
-                    }`}
-                  />
-                  {formErrors.email && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.email}
-                    </p>
-                  )}
-                </div>
-
-                <button
-                  onClick={handleSubmit}
-                  className="w-full py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300 font-semibold"
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
+            <Contact />
           </div>
         </div>
       </section>
@@ -436,31 +345,33 @@ const { ref, inView } = useInView({
 
       {/* Milestones Section */}
       <section className="py-20 bg-gray-100" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 text-center">
-          {milestones.map((item, index) => {
-            const { value, suffix } = splitNumber(item.number);
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={index}
-                className="flex flex-col items-center"
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <Icon className="w-12 h-12 text-yellow-500 mb-4" />
-                <div className="text-3xl font-bold text-black mb-2">
-                  {inView ? <CountUp end={value} duration={2} /> : "0"}
-                  {suffix}
-                </div>
-                <div className="text-lg font-semibold text-gray-700">{item.label}</div>
-              </motion.div>
-            );
-          })}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            {milestones.map((item, index) => {
+              const { value, suffix } = splitNumber(item.number);
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  className="flex flex-col items-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                >
+                  <Icon className="w-12 h-12 text-yellow-500 mb-4" />
+                  <div className="text-3xl font-bold text-black mb-2">
+                    {inView ? <CountUp end={value} duration={2} /> : "0"}
+                    {suffix}
+                  </div>
+                  <div className="text-lg font-semibold text-gray-700">
+                    {item.label}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
       {/* Featured Projects Section */}
       <section className="py-20 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
@@ -550,25 +461,9 @@ const { ref, inView } = useInView({
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12 px-4 md:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-4">
-            <span className="text-yellow-500">Arch</span> Point
-          </h3>
-          <p className="text-gray-400 mb-8">
-            Delivering excellence through comprehensive project management
-            consultancy services.
-          </p>
-          <div className="flex justify-center space-x-6">
-            <Phone className="text-yellow-500" size={24} />
-            <Mail className="text-yellow-500" size={24} />
-            <Globe className="text-yellow-500" size={24} />
-          </div>
-          <p className="text-gray-500 mt-8">
-            &copy; 2025 Arch Point. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
+
+      {/* Contact Form */}
     </div>
   );
 };
