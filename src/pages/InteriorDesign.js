@@ -11,19 +11,15 @@ import {
   Star,
   ArrowRight,
 } from "lucide-react";
+import Footer from '../components/Footer';
 import CountUp from "react-countup";
+import Contact from "../components/contact";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 const InteriorDesign = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentProject, setCurrentProject] = useState(0);
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    contact: "",
-    email: "",
-  });
-  const [formErrors, setFormErrors] = useState({});
 
   // Hero carousel images - Interior focused
   const heroImages = [
@@ -157,26 +153,6 @@ const milestones = [
     return () => clearInterval(timer);
   }, []);
 
-  // Form validation
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.name.trim()) errors.name = "Name is required";
-    if (!formData.contact.trim()) errors.contact = "Contact number is required";
-    if (!formData.email.trim()) errors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      errors.email = "Email is invalid";
-    return errors;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errors = validateForm();
-    setFormErrors(errors);
-    if (Object.keys(errors).length === 0) {
-      alert("Form submitted successfully!");
-      setFormData({ name: "", contact: "", email: "" });
-    }
-  };
 
   const nextSlide = () =>
     setCurrentSlide((prev) => (prev + 1) % heroImages.length);
@@ -294,76 +270,7 @@ const milestones = [
             </div>
 
             {/* Right Column - Contact Form */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-gray-800">
-                Contact Us
-              </h3>
-              <div className="space-y-6">
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.name ? "border-red-500" : "border-gray-300"
-                    }`}
-                  />
-                  {formErrors.name && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.name}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <input
-                    type="tel"
-                    placeholder="Contact Number"
-                    value={formData.contact}
-                    onChange={(e) =>
-                      setFormData({ ...formData, contact: e.target.value })
-                    }
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.contact ? "border-red-500" : "border-gray-300"
-                    }`}
-                  />
-                  {formErrors.contact && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.contact}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 ${
-                      formErrors.email ? "border-red-500" : "border-gray-300"
-                    }`}
-                  />
-                  {formErrors.email && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.email}
-                    </p>
-                  )}
-                </div>
-
-                <button
-                  onClick={handleSubmit}
-                  className="w-full py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300 font-semibold"
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
+           <Contact />
           </div>
         </div>
       </section>
@@ -533,25 +440,7 @@ const milestones = [
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12 px-4 md:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-4">
-            <span className="text-yellow-500">Arch</span> Point
-          </h3>
-          <p className="text-gray-400 mb-8">
-            Creating interior design excellence through innovative solutions and
-            lifestyle-centered design.
-          </p>
-          <div className="flex justify-center space-x-6">
-            <Phone className="text-yellow-500" size={24} />
-            <Mail className="text-yellow-500" size={24} />
-            <Globe className="text-yellow-500" size={24} />
-          </div>
-          <p className="text-gray-500 mt-8">
-            &copy; 2025 Arch Point. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
