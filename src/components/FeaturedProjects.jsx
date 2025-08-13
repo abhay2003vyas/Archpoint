@@ -7,19 +7,19 @@ const PROJECT_STORIES = [
     description:
       "A contemporary library design that bridges traditional knowledge with digital innovation.",
     image:
-      "/images/home/1.jpg",
+      "https://i.postimg.cc/wv06Tv2Y/1.jpg",
     category: "Public Architecture",
     year: "2024",
   },
   {
-    id: 2,
+    id: 1,
     title: "Gaurav Ji Flat",
     description:
-      "Green building practices meet modern workplace design in this innovative commercial space.",
+      "A contemporary library design that bridges traditional knowledge with digital innovation.",
     image:
-      "/images/home/2.jpg",
-    category: "Interior Degign",
-    year: "2023",
+      "https://i.postimg.cc/7ZkYVpfc/2.png",
+    category: "Public Architecture",
+    year: "2024",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const PROJECT_STORIES = [
     description:
       "Redefining city living with thoughtful design and community-focused amenities.",
     image:
-      "/images/home/3.jpg",
+      "https://i.postimg.cc/90yHwQtf/3.png",
     category: "Architectural Design",
     year: "2024",
   },
@@ -37,7 +37,7 @@ const PROJECT_STORIES = [
     description:
       "A dynamic space that celebrates creativity and brings the community together.",
     image:
-      "/images/home/4.jpg",
+      "https://i.postimg.cc/TPH6ZS3T/4.png",
     category: "Cultural",
     year: "2023",
   }
