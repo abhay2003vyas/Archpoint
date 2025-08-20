@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Award, Star, Trophy, Medal, Crown, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Award, Star, Trophy, Medal, Crown, Shield, ChevronLeft, ChevronRight, BatteryCharging } from 'lucide-react';
 
 // Using placeholder images since actual imports aren't available in artifacts
 import img1 from '../assets/Asia.jpg';
@@ -9,6 +9,7 @@ import A2 from '../assets/Awards2.jpg';
 import A3 from '../assets/Awards3.jpeg';
 import A4 from '../assets/Awards4.jpeg';
 import A5 from '../assets/Awards5.jpg';
+import { BiCertification } from 'react-icons/bi';
 
 const AwardsRecognition = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,7 +37,7 @@ const AwardsRecognition = () => {
   const awards = [
     {
       id: 1,
-      title: "3rd Asia's Leadership Award",
+      title: " Certification 3rd Asia's Leadership Award",
       year: "2025",
       icon: <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />,
       category: "Leadership",
@@ -45,7 +46,7 @@ const AwardsRecognition = () => {
     },
     {
       id: 2,
-      title: "IIBL Award",
+      title: "Indian ICONIC Brands and Leaders (IIBL) Award",
       year: "2024",
       icon: <Award className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />,
       category: "Architecture",
@@ -54,7 +55,7 @@ const AwardsRecognition = () => {
     },
     {
       id: 3,
-      title: "Excellence in Design Award",
+      title: "IIBL Certification of Achievement",
       year: "2023",
       icon: <Medal className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />,
       category: "Design",
@@ -63,8 +64,8 @@ const AwardsRecognition = () => {
     },
     {
       id: 4,
-      title: "Sustainability Champion Award",
-      year: "2023",
+      title: "Asia Leadership Award ",
+      year: "2025",
       icon: <Crown className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />,
       category: "Sustainability",
       image: A2,
@@ -72,8 +73,8 @@ const AwardsRecognition = () => {
     },
     {
       id: 5,
-      title: "Innovation Excellence Award",
-      year: "2022",
+      title: "National ICON Award",
+      year: "2025",
       icon: <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />,
       category: "Innovation",
       image: A4,
@@ -81,11 +82,20 @@ const AwardsRecognition = () => {
     },
     {
       id: 6,
-      title: "Quality Excellence Award",
+      title: "Certification of National ICON Award",
       year: "2022",
       icon: <Star className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />,
       category: "Quality",
       image: A5,
+      bgColor: "bg-gradient-to-br from-amber-50 to-orange-100"
+    },
+    {
+      id: 7,
+      title: "Pride of Rajasthan Award",
+      year: "2022",
+      icon: <BiCertification className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-600" />,
+      category: "Quality",
+      image: A3,
       bgColor: "bg-gradient-to-br from-amber-50 to-orange-100"
     }
   ];
@@ -207,17 +217,16 @@ const AwardsRecognition = () => {
                 className="w-full flex-shrink-0 px-2"
               >
                 <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden group cursor-pointer transform hover:-translate-y-2 border border-yellow-200/50">
-                  {/* Award Image */}
-                  <div className={`relative h-64 sm:h-72 overflow-hidden ${award.bgColor}`}>
-                    <div className="absolute inset-0 flex items-center justify-center p-4">
+                  {/* Award Image - Fixed sizing for mobile */}
+                  <div className={`relative h-64 overflow-hidden ${award.bgColor} flex items-center justify-center p-4`}>
+                    <div className="w-full h-full bg-white rounded-lg shadow-md overflow-hidden flex items-center justify-center">
                       <img 
                         src={award.image} 
                         alt={award.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 rounded-lg shadow-lg"
+                        className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent group-hover:from-black/20 transition-all duration-300"></div>
                     <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-full p-3 transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg border border-yellow-200/50">
                       {award.icon}
                     </div>
@@ -274,17 +283,16 @@ const AwardsRecognition = () => {
                 onMouseEnter={() => setHoveredCard(award.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                {/* Award Image */}
-                <div className={`relative h-64 md:h-80 lg:h-[22rem] overflow-hidden ${award.bgColor}`}>
-                  <div className="absolute inset-0 flex items-center justify-center p-6">
+                {/* Award Image - Fixed sizing for desktop */}
+                <div className={`relative h-80 overflow-hidden ${award.bgColor} flex items-center justify-center p-6`}>
+                  <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden flex items-center justify-center">
                     <img 
                       src={award.image} 
                       alt={award.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 rounded-lg shadow-lg"
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent group-hover:from-black/20 transition-all duration-300"></div>
                   <div className={`absolute top-5 right-5 bg-white/95 backdrop-blur-sm rounded-full p-3 transition-all duration-300 border border-yellow-200/50 ${
                     hoveredCard === award.id ? 'scale-110 rotate-12 shadow-lg' : 'scale-100 rotate-0'
                   }`}>
