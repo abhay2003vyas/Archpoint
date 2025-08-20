@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     // Email content
     const mailOptions = {
       from: `"ArchPoint Contact" <${process.env.EMAIL_USER}>`,
-      to: "co.2021.asvyas@bitwardha.ac.in", // 👈 Admin email
+      to: "contactarchpoint@gmail.com", // 👈 Admin email
       subject: "New Contact Form Submission",
       html: `
         <h2>New Contact Details</h2>
