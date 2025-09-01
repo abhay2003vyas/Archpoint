@@ -10,62 +10,91 @@ const ClientTestimonials = () => {
     setIsVisible(true);
   }, []);
 
-  // Sample testimonials - replace with actual client testimonials
+  // Real client testimonials from Arch Point Consultants
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      position: "General Manager",
-      company: "Grand Plaza Hotel",
+      name: "Parth Saini",
+      position: "Home Owner",
+      company: "Residential Project",
       rating: 5,
-      text: "ArchPoint has transformed our guest experience completely. Their attention to detail and commitment to excellence is unmatched. Our guest satisfaction scores have increased by 40% since partnering with them.",
-      image: "SJ",
+      text: "One of the best architects in Jaipur! Excellent services, professional approach, and very friendly nature. The house plan and commercials were explained in detail, which made everything clear and smooth. Recently got my home completed in Mansarovar, and I'm truly grateful to Arch Point Consultants and Amit Ji for their wonderful work.",
+      image: "PS",
       color: "bg-gradient-to-r from-yellow-500 to-amber-600",
-      location: "New York, NY"
+      location: "Mansarovar, Jaipur",
+      category: "Residential"
     },
     {
       id: 2,
-      name: "Michael Chen",
-      position: "Operations Director",
-      company: "Luxury Suites International",
+      name: "SP Bharill",
+      position: "Hospital Administrator",
+      company: "Amar Jain Hospital",
       rating: 5,
-      text: "The level of professionalism and service quality we've received from ArchPoint is extraordinary. They understand the hospitality industry like no other service provider we've worked with.",
-      image: "MC",
+      text: "Arch Point Consultants has done an excellent job in completing the Amar Jain Hospital project with architectural, interior, and PMC services, ensuring everything was delivered with precision and professionalism. They have also beautifully managed the interiors of our residence, giving it a modern yet comfortable touch. A reliable team that blends creativity with commitment.",
+      image: "SB",
       color: "bg-gradient-to-r from-amber-500 to-yellow-600",
-      location: "Los Angeles, CA"
+      location: "Jaipur",
+      category: "Commercial & Residential"
     },
     {
       id: 3,
-      name: "Emily Rodriguez",
-      position: "Hotel Owner",
-      company: "Boutique Hotels Group",
+      name: "Riddhi Kapoor",
+      position: "Client",
+      company: "Design Consultation",
       rating: 5,
-      text: "Working with ArchPoint has been a game-changer for our properties. Their innovative solutions and dedicated support team have helped us achieve operational excellence across all our locations.",
-      image: "ER",
+      text: "The team at Arch Point Consultants was an absolute delight to work with! 🌟 Their professionalism, creativity, and collaborative approach made the entire experience seamless. I especially loved the soothing and positive environment they create, which truly reflects in their work.",
+      image: "RK",
       color: "bg-gradient-to-r from-yellow-600 to-orange-500",
-      location: "Miami, FL"
+      location: "Jaipur",
+      category: "Consultation"
     },
     {
       id: 4,
-      name: "David Thompson",
-      position: "VP of Operations",
-      company: "Resort Collection",
+      name: "Gopal Sharma",
+      position: "Flat Owner",
+      company: "Seven Heaven Flats",
       rating: 5,
-      text: "ArchPoint's expertise in hotel services is evident in every interaction. They've helped us streamline operations while maintaining the highest standards of guest service. Truly exceptional partners.",
-      image: "DT",
+      text: "A big thank you to Arch Point Consultants for completing the interiors of our Seven Heaven flat at Gandhi Path, Mansarovar so beautifully. The design, finishing, and attention to detail have truly exceeded our expectations. The team has done an amazing job, and we appreciate their hard work and creativity.",
+      image: "GS",
       color: "bg-gradient-to-r from-amber-400 to-yellow-500",
-      location: "Las Vegas, NV"
+      location: "Gandhi Path, Mansarovar",
+      category: "Interior Design"
     },
     {
       id: 5,
-      name: "Lisa Park",
-      position: "Regional Manager",
-      company: "Premium Hospitality",
+      name: "Anurag Aman",
+      position: "Client",
+      company: "Residence Interior",
       rating: 5,
-      text: "The results speak for themselves - increased efficiency, reduced costs, and happier guests. ArchPoint's team goes above and beyond to ensure our success. I couldn't recommend them more highly.",
-      image: "LP",
+      text: "Arch Point Consultants is really an amazing choice for your dream construction, they have hardworking team which delivers their work on time and have aesthetic sense to design your building. I hired them for my relative's residence interior it was really amazing experience.",
+      image: "AA",
       color: "bg-gradient-to-r from-yellow-500 to-amber-500",
-      location: "Chicago, IL"
+      location: "Jaipur",
+      category: "Interior Design"
+    },
+    {
+      id: 6,
+      name: "Vivek Kalra",
+      position: "Home Owner",
+      company: "Residential Design",
+      rating: 5,
+      text: "Getting our residence designed and executed by Arch Point Consultants has been a very satisfying experience. Right from the first discussion till the final handover, the team was approachable and clear in their process. They guided us at every stage, balanced creativity with practicality, and ensured the work moved smoothly without unnecessary stress.",
+      image: "VK",
+      color: "bg-gradient-to-r from-amber-600 to-orange-500",
+      location: "Jaipur",
+      category: "Residential"
+    },
+    {
+      id: 7,
+      name: "Hetansh Sheth",
+      position: "Client",
+      company: "Design Consultation",
+      rating: 5,
+      text: "Professional approach and creative solutions, listens to the client's demands and gives an appropriate design. I highly recommend this consultancy for your design needs.",
+      image: "HS",
+      color: "bg-gradient-to-r from-yellow-400 to-amber-400",
+      location: "Jaipur",
+      category: "Consultation"
     }
   ];
 
@@ -106,7 +135,7 @@ const ClientTestimonials = () => {
             What Our <span className="text-yellow-600">Valued Clients</span> Say
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Discover why industry leaders trust ArchPoint to deliver exceptional hospitality solutions and drive measurable results.
+            Real experiences from real clients who trusted Arch Point Consultants with their architectural dreams in Jaipur and beyond.
           </p>
         </div>
 
@@ -122,6 +151,13 @@ const ClientTestimonials = () => {
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
                 <Quote className="w-6 h-6 text-white" />
               </div>
+            </div>
+
+            {/* Category Badge */}
+            <div className="absolute -top-3 right-8">
+              <span className="inline-block px-3 py-1 bg-gradient-to-r from-yellow-500 to-amber-500 text-white text-xs font-semibold rounded-full shadow-md">
+                {current.category}
+              </span>
             </div>
 
             {/* Testimonial Content */}
@@ -147,7 +183,12 @@ const ClientTestimonials = () => {
                   <h4 className="text-lg font-semibold text-slate-800">{current.name}</h4>
                   <p className="text-slate-600 text-sm">{current.position}</p>
                   <p className="text-yellow-700 font-medium text-sm">{current.company}</p>
-                  <p className="text-slate-500 text-xs">{current.location}</p>
+                  <p className="text-slate-500 text-xs flex items-center">
+                    <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
+                    {current.location}
+                  </p>
                 </div>
               </div>
             </div>
@@ -169,12 +210,12 @@ const ClientTestimonials = () => {
         </div>
 
         {/* Testimonial Thumbnails */}
-        <div className={`flex justify-center space-x-3 mb-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`flex justify-center space-x-2 mb-8 overflow-x-auto pb-2 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {testimonials.map((testimonial, index) => (
             <button
               key={testimonial.id}
               onClick={() => setCurrentTestimonial(index)}
-              className={`relative group transition-all duration-300 ${
+              className={`relative group transition-all duration-300 flex-shrink-0 ${
                 index === currentTestimonial ? 'scale-110' : 'scale-90 opacity-60 hover:opacity-80'
               }`}
             >
@@ -183,9 +224,10 @@ const ClientTestimonials = () => {
               } group-hover:border-yellow-300 transition-all duration-300`}>
                 {testimonial.image}
               </div>
-              <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute -bottom-14 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <div className="bg-slate-800 rounded-lg px-2 py-1 text-white text-xs whitespace-nowrap">
                   {testimonial.name}
+                  <div className="text-yellow-300 text-xs">{testimonial.category}</div>
                 </div>
               </div>
             </button>
@@ -207,21 +249,29 @@ const ClientTestimonials = () => {
           ))}
         </div>
 
-        {/* Trust Badge */}
-        <div className={`text-center transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center space-x-4 bg-white rounded-xl px-8 py-4 shadow-lg border border-yellow-200/50">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-slate-800">4.9/5</div>
-              <div className="flex space-x-0.5 mb-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
-                ))}
-              </div>
+        {/* Stats Section */}
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="text-center bg-white rounded-xl px-6 py-4 shadow-lg border border-yellow-200/50">
+            <div className="text-2xl font-bold text-slate-800">5.0/5</div>
+            <div className="flex justify-center space-x-0.5 mb-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+              ))}
             </div>
-            <div className="text-left border-l border-slate-200 pl-4">
-              <p className="text-slate-700 font-medium text-sm">Excellent Rating</p>
-              <p className="text-slate-500 text-xs">Based on 500+ reviews</p>
-            </div>
+            <p className="text-slate-600 text-sm">Perfect Rating</p>
+            <p className="text-slate-500 text-xs">From all clients</p>
+          </div>
+          
+          <div className="text-center bg-white rounded-xl px-6 py-4 shadow-lg border border-yellow-200/50">
+            <div className="text-2xl font-bold text-slate-800">100+</div>
+            <div className="text-yellow-600 font-semibold text-sm">Projects Completed</div>
+            <p className="text-slate-500 text-xs">Residential & Commercial</p>
+          </div>
+          
+          <div className="text-center bg-white rounded-xl px-6 py-4 shadow-lg border border-yellow-200/50">
+            <div className="text-2xl font-bold text-slate-800">10+</div>
+            <div className="text-yellow-600 font-semibold text-sm">Years Experience</div>
+            <p className="text-slate-500 text-xs">In Jaipur & Beyond</p>
           </div>
         </div>
       </div>
