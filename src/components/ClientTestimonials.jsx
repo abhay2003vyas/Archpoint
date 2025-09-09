@@ -252,7 +252,7 @@ const ClientTestimonials = () => {
         {/* Stats Section */}
         <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="text-center bg-white rounded-xl px-6 py-4 shadow-lg border border-yellow-200/50">
-            <div className="text-2xl font-bold text-slate-800">5.0/5</div>
+            <div className="text-2xl font-bold text-slate-800">5/5</div>
             <div className="flex justify-center space-x-0.5 mb-1">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
@@ -269,7 +269,7 @@ const ClientTestimonials = () => {
           </div>
           
           <div className="text-center bg-white rounded-xl px-6 py-4 shadow-lg border border-yellow-200/50">
-            <div className="text-2xl font-bold text-slate-800">10+</div>
+            <div className="text-2xl font-bold text-slate-800">18+</div>
             <div className="text-yellow-600 font-semibold text-sm">Years Experience</div>
             <p className="text-slate-500 text-xs">In Jaipur & Beyond</p>
           </div>
