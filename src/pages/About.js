@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Footer from '../components/Footer';
 import Inquiry from "../components/inquiry";
+import Testimonials from "../components/ClientTestimonials";
 import {
   ChevronRight,
   Clock,
@@ -480,51 +481,7 @@ const PMCLandingPage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-16">
-            What Our Customers Say
-          </h2>
-          <div className="relative">
-            <div className="bg-gray-50 rounded-2xl p-8 mb-8">
-              <div className="flex justify-center mb-4">
-                {Array.from({
-                  length: testimonials[activeTestimonial].rating,
-                }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-6 h-6 text-yellow-500 fill-current"
-                  />
-                ))}
-              </div>
-              <p className="text-xl text-gray-600 mb-6 italic">
-                "{testimonials[activeTestimonial].text}"
-              </p>
-              <div>
-                <div className="font-semibold text-gray-900">
-                  {testimonials[activeTestimonial].author}
-                </div>
-                <div className="text-gray-600">
-                  {testimonials[activeTestimonial].company}
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === activeTestimonial
-                      ? "bg-yellow-500"
-                      : "bg-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <Testimonials/>
 
       {/* About Section */}
       <section id="about" className="py-20 bg-gray-50">
